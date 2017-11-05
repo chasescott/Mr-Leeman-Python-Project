@@ -1,0 +1,458 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(104,151,187); }
+.s4 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+main.py</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">import </span><span class="s1">sys 
+<a name="l2"><span class="ln">2    </span></a></span><span class="s0">import </span><span class="s1">io 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">import </span><span class="s1">time 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">import </span><span class="s1">os 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s0">import </span><span class="s1">PyPDF2 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s0">from </span><span class="s1">Student </span><span class="s0">import </span><span class="s1">* 
+<a name="l7"><span class="ln">7    </span></a></span><span class="s0">from </span><span class="s1">TreeRoadSchool </span><span class="s0">import </span><span class="s1">* 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s0">import </span><span class="s1">pickle 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s0">from </span><span class="s1">tkinter </span><span class="s0">import </span><span class="s1">* 
+<a name="l10"><span class="ln">10   </span></a></span><span class="s0">from </span><span class="s1">tkinter </span><span class="s0">import </span><span class="s1">messagebox 
+<a name="l11"><span class="ln">11   </span></a></span><span class="s0">from </span><span class="s1">tkinter.scrolledtext </span><span class="s0">import </span><span class="s1">ScrolledText 
+<a name="l12"><span class="ln">12   </span></a> 
+<a name="l13"><span class="ln">13   </span></a></span><span class="s0">from </span><span class="s1">TreeRoadSchool </span><span class="s0">import </span><span class="s1">TreeRoadSchool 
+<a name="l14"><span class="ln">14   </span></a></span><span class="s0">from </span><span class="s1">Student </span><span class="s0">import </span><span class="s1">Student 
+<a name="l15"><span class="ln">15   </span></a> 
+<a name="l16"><span class="ln">16   </span></a></span><span class="s0">from </span><span class="s1">reportlab.pdfgen </span><span class="s0">import </span><span class="s1">canvas 
+<a name="l17"><span class="ln">17   </span></a></span><span class="s0">from </span><span class="s1">reportlab.lib.pagesizes </span><span class="s0">import </span><span class="s1">portrait 
+<a name="l18"><span class="ln">18   </span></a></span><span class="s0">from </span><span class="s1">reportlab.lib.enums </span><span class="s0">import </span><span class="s1">TA_JUSTIFY 
+<a name="l19"><span class="ln">19   </span></a></span><span class="s0">from </span><span class="s1">reportlab.lib.pagesizes </span><span class="s0">import </span><span class="s1">letter 
+<a name="l20"><span class="ln">20   </span></a></span><span class="s0">from </span><span class="s1">reportlab.platypus </span><span class="s0">import </span><span class="s1">SimpleDocTemplate</span><span class="s0">, </span><span class="s1">Paragraph</span><span class="s0">, </span><span class="s1">Spacer</span><span class="s0">, </span><span class="s1">Image 
+<a name="l21"><span class="ln">21   </span></a></span><span class="s0">from </span><span class="s1">reportlab.lib.styles </span><span class="s0">import </span><span class="s1">getSampleStyleSheet</span><span class="s0">, </span><span class="s1">ParagraphStyle 
+<a name="l22"><span class="ln">22   </span></a></span><span class="s0">from </span><span class="s1">reportlab.lib.units </span><span class="s0">import </span><span class="s1">inch 
+<a name="l23"><span class="ln">23   </span></a> 
+<a name="l24"><span class="ln">24   </span></a>newSchool = TreeRoadSchool(</span><span class="s2">&quot;Tree Road School&quot;</span><span class="s1">) 
+<a name="l25"><span class="ln">25   </span></a>username = </span><span class="s2">''</span><span class="s1"> 
+<a name="l26"><span class="ln">26   </span></a>psWord = </span><span class="s2">''</span><span class="s1"> 
+<a name="l27"><span class="ln">27   </span></a>root = Tk() 
+<a name="l28"><span class="ln">28   </span></a>PIK = </span><span class="s2">&quot;pickle.dat&quot;</span><span class="s1"> 
+<a name="l29"><span class="ln">29   </span></a>answer = </span><span class="s2">&quot;OK&quot;</span><span class="s1"> 
+<a name="l30"><span class="ln">30   </span></a> 
+<a name="l31"><span class="ln">31   </span></a></span><span class="s0">class </span><span class="s1">Main: 
+<a name="l32"><span class="ln">32   </span></a> 
+<a name="l33"><span class="ln">33   </span></a> 
+<a name="l34"><span class="ln">34   </span></a>    </span><span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">master): 
+<a name="l35"><span class="ln">35   </span></a>        root.title(</span><span class="s2">&quot;Tree Road School System&quot;</span><span class="s1">) 
+<a name="l36"><span class="ln">36   </span></a>        self.textPad = ScrolledText(root</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">80</span><span class="s0">, </span><span class="s1">height=</span><span class="s3">20</span><span class="s1">) 
+<a name="l37"><span class="ln">37   </span></a>        self.genderBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Gender Report'</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify=CENTER</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.genderReport()) 
+<a name="l38"><span class="ln">38   </span></a>        self.emailBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Email Report'</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify=CENTER</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.emailListReport()) 
+<a name="l39"><span class="ln">39   </span></a>        self.houseBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Missing Details Report'</span><span class="s0">, </span><span class="s1">width=</span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify=CENTER</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.missingDetailsReport()) 
+<a name="l40"><span class="ln">40   </span></a>        self.locateBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Search'</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.locateAStudent()) 
+<a name="l41"><span class="ln">41   </span></a>        self.saveBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Save'</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.addNewStudent()) 
+<a name="l42"><span class="ln">42   </span></a>        self.updateBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Update'</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.updateStudent()) 
+<a name="l43"><span class="ln">43   </span></a>        self.quitBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Quit'</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.logoutCheck()) 
+<a name="l44"><span class="ln">44   </span></a>        self.loginBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Login'</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.getUserAndPassword()) 
+<a name="l45"><span class="ln">45   </span></a>        self.logoutBtn = Button(</span><span class="s0">None, </span><span class="s1">text=</span><span class="s2">'Logout'</span><span class="s0">, </span><span class="s1">command = </span><span class="s0">lambda</span><span class="s1">: self.logoutCheck()) 
+<a name="l46"><span class="ln">46   </span></a>        self.updateIdEntry = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l47"><span class="ln">47   </span></a>        self.entry1 = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER</span><span class="s0">, </span><span class="s1">textvariable = username) 
+<a name="l48"><span class="ln">48   </span></a>        self.entry2 = Entry (show = </span><span class="s2">&quot;*&quot;</span><span class="s0">, </span><span class="s1">bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER</span><span class="s0">, </span><span class="s1">textvariable = psWord) 
+<a name="l49"><span class="ln">49   </span></a>        self.logo = PhotoImage(file=</span><span class="s2">&quot;../.idea/images/school.gif&quot;</span><span class="s1">) 
+<a name="l50"><span class="ln">50   </span></a>        self.locateLbl = Label(text=</span><span class="s2">&quot;Enter the student ID:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l51"><span class="ln">51   </span></a>        self.pwLbl = Label(text=</span><span class="s2">&quot;Please enter your password&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l52"><span class="ln">52   </span></a>        self.updateIdTitleLbl = Label(text=</span><span class="s2">'''To update a student's details, please complete  
+<a name="l53"><span class="ln">53   </span></a>        the fields below including the student ID.'''</span><span class="s0">, </span><span class="s1">padx = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">font = </span><span class="s2">&quot;Verdana 14&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">60</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l54"><span class="ln">54   </span></a>        self.updateIdLbl = Label(text=</span><span class="s2">&quot;Unique ID&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l55"><span class="ln">55   </span></a>        self.userLbl = Label(text=</span><span class="s2">&quot;Please enter your username&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l56"><span class="ln">56   </span></a>        self.logoLbl = Label(image=self.logo</span><span class="s0">, </span><span class="s1">padx = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l57"><span class="ln">57   </span></a>        self.userLbl = Label(text=</span><span class="s2">&quot;Please enter your username&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l58"><span class="ln">58   </span></a>        self.welcomeLbl = Label(text=</span><span class="s2">&quot;&quot;&quot;</span><span class="s0">\n</span><span class="s2">Welcome to the Tree Road School System.</span><span class="s0">\n</span><span class="s2">&quot;&quot;&quot;</span><span class="s0">, </span><span class="s1">padx = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">font = </span><span class="s2">&quot;Verdana 16 bold&quot;</span><span class="s0">,</span><span class="s1">justify = CENTER</span><span class="s0">,</span><span class="s1">width=</span><span class="s3">60</span><span class="s1">) 
+<a name="l59"><span class="ln">59   </span></a>        self.uniqueId = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l60"><span class="ln">60   </span></a>        self.firstName = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l61"><span class="ln">61   </span></a>        self.surname = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l62"><span class="ln">62   </span></a>        self.address = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l63"><span class="ln">63   </span></a>        self.telNumber = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l64"><span class="ln">64   </span></a>        self.DOB = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l65"><span class="ln">65   </span></a>        self.gender = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l66"><span class="ln">66   </span></a>        self.tutorGroup = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l67"><span class="ln">67   </span></a>        self.uniqueEmail = Entry(bg=</span><span class="s2">'white'</span><span class="s0">, </span><span class="s1">relief=SUNKEN</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l68"><span class="ln">68   </span></a>        self.firstNameLbl = Label(text=</span><span class="s2">&quot;First name:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l69"><span class="ln">69   </span></a>        self.surnameLbl = Label(text=</span><span class="s2">&quot;Surname:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l70"><span class="ln">70   </span></a>        self.addressLbl = Label(text=</span><span class="s2">&quot;Address:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l71"><span class="ln">71   </span></a>        self.telNumberLbl = Label(text=</span><span class="s2">&quot;Tel No:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l72"><span class="ln">72   </span></a>        self.DOBLbl = Label(text=</span><span class="s2">&quot;DOB:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l73"><span class="ln">73   </span></a>        self.genderLbl = Label(text=</span><span class="s2">&quot;Gender:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l74"><span class="ln">74   </span></a>        self.tutorGroupLbl = Label(text=</span><span class="s2">&quot;Tutor Group:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l75"><span class="ln">75   </span></a>        self.uniqueEmailLbl = Label(text=</span><span class="s2">&quot;Email:&quot;</span><span class="s0">, </span><span class="s1">width = </span><span class="s3">20</span><span class="s0">, </span><span class="s1">justify = CENTER) 
+<a name="l76"><span class="ln">76   </span></a> 
+<a name="l77"><span class="ln">77   </span></a>        </span><span class="s4">#Load test data</span><span class="s1"> 
+<a name="l78"><span class="ln">78   </span></a>        newSchool.addStudents() 
+<a name="l79"><span class="ln">79   </span></a>        newSchool.addEmptyStudents() 
+<a name="l80"><span class="ln">80   </span></a> 
+<a name="l81"><span class="ln">81   </span></a>        self.welcomeLbl.grid(row=</span><span class="s3">0</span><span class="s0">, </span><span class="s1">columnspan = </span><span class="s3">5</span><span class="s1">) 
+<a name="l82"><span class="ln">82   </span></a>        self.logoLbl.grid(row=</span><span class="s3">1</span><span class="s0">, </span><span class="s1">columnspan = </span><span class="s3">5</span><span class="s1">) 
+<a name="l83"><span class="ln">83   </span></a>        self.entry1.grid(row=</span><span class="s3">2</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">2</span><span class="s0">, </span><span class="s1">columnspan = </span><span class="s3">2</span><span class="s1">) 
+<a name="l84"><span class="ln">84   </span></a>        self.pwLbl.grid(row=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s0">, </span><span class="s1">columnspan = </span><span class="s3">2</span><span class="s1">) 
+<a name="l85"><span class="ln">85   </span></a>        self.userLbl.grid(row=</span><span class="s3">2</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">2</span><span class="s1">) 
+<a name="l86"><span class="ln">86   </span></a>        self.entry2.grid(row=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">2</span><span class="s0">, </span><span class="s1">columnspan = </span><span class="s3">2</span><span class="s1">) 
+<a name="l87"><span class="ln">87   </span></a>        self.loginBtn.grid(row=</span><span class="s3">50</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">2</span><span class="s1">) 
+<a name="l88"><span class="ln">88   </span></a>        self.quitBtn.grid(row=</span><span class="s3">50</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">2</span><span class="s1">) 
+<a name="l89"><span class="ln">89   </span></a>        </span><span class="s4"># newSchool.loadAllStudents()</span><span class="s1"> 
+<a name="l90"><span class="ln">90   </span></a>        newSchool.viewAllStudents() 
+<a name="l91"><span class="ln">91   </span></a> 
+<a name="l92"><span class="ln">92   </span></a> 
+<a name="l93"><span class="ln">93   </span></a>    </span><span class="s0">def </span><span class="s1">getUserAndPassword(self): 
+<a name="l94"><span class="ln">94   </span></a>        username = self.entry1.get() 
+<a name="l95"><span class="ln">95   </span></a>        psWord = self.entry2.get() 
+<a name="l96"><span class="ln">96   </span></a>        </span><span class="s0">if </span><span class="s1">newSchool.loginCode(username</span><span class="s0">, </span><span class="s1">psWord) == </span><span class="s0">True</span><span class="s1">: 
+<a name="l97"><span class="ln">97   </span></a>            self.entry1.grid_remove() 
+<a name="l98"><span class="ln">98   </span></a>            self.entry2.grid_remove() 
+<a name="l99"><span class="ln">99   </span></a>            self.loginBtn.grid_remove() 
+<a name="l100"><span class="ln">100  </span></a>            self.userLbl.grid_remove() 
+<a name="l101"><span class="ln">101  </span></a>            self.pwLbl.grid_remove() 
+<a name="l102"><span class="ln">102  </span></a> 
+<a name="l103"><span class="ln">103  </span></a>            filemenu.add_command(label=</span><span class="s2">&quot;Add a New Student&quot;</span><span class="s0">, </span><span class="s1">command= </span><span class="s0">lambda</span><span class="s1">: app.addNewStudentMenu()) 
+<a name="l104"><span class="ln">104  </span></a>            filemenu.add_command(label=</span><span class="s2">&quot;View All Students&quot;</span><span class="s0">, </span><span class="s1">command= </span><span class="s0">lambda</span><span class="s1">: app.retrieveAllStudentsMenu()) 
+<a name="l105"><span class="ln">105  </span></a>            filemenu.add_command(label=</span><span class="s2">&quot;Locate A Student&quot;</span><span class="s0">, </span><span class="s1">command= </span><span class="s0">lambda</span><span class="s1">: app.locateAStudentMenu()) 
+<a name="l106"><span class="ln">106  </span></a>            filemenu.add_command(label=</span><span class="s2">&quot;Update A Student&quot;</span><span class="s0">, </span><span class="s1">command= </span><span class="s0">lambda</span><span class="s1">: app.updateAStudentMenu()) 
+<a name="l107"><span class="ln">107  </span></a> 
+<a name="l108"><span class="ln">108  </span></a>            filemenu.add_separator() 
+<a name="l109"><span class="ln">109  </span></a> 
+<a name="l110"><span class="ln">110  </span></a>            filemenu.add_command(label=</span><span class="s2">&quot;Run Reports&quot;</span><span class="s0">, </span><span class="s1">command= </span><span class="s0">lambda</span><span class="s1">: app.runReportsMenu()) 
+<a name="l111"><span class="ln">111  </span></a>            </span><span class="s4"># filemenu.add_command(label=&quot;Run Email List Report&quot;, command= lambda: app.emailListMenu())</span><span class="s1"> 
+<a name="l112"><span class="ln">112  </span></a>            </span><span class="s4"># filemenu.add_command(label=&quot;Run Students Without Details Report&quot;, command= lambda: app.emptyStudentsMenu())</span><span class="s1"> 
+<a name="l113"><span class="ln">113  </span></a>            self.logoutBtn.grid(row=</span><span class="s3">50</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">2</span><span class="s1">) 
+<a name="l114"><span class="ln">114  </span></a>            messagebox.showinfo(</span><span class="s2">&quot;Success!&quot;</span><span class="s0">,</span><span class="s2">&quot;Sign in successful.  Please continue.&quot;</span><span class="s1">) 
+<a name="l115"><span class="ln">115  </span></a>            self.welcomeLbl = Label(text=</span><span class="s2">&quot;&quot;&quot;</span><span class="s0">\n</span><span class="s2">Welcome, Mr Leeman.</span><span class="s0">\n</span><span class="s2"> 
+<a name="l116"><span class="ln">116  </span></a>            Please select the required function from the 'File' menu above.&quot;&quot;&quot;</span><span class="s0">,</span><span class="s1"> 
+<a name="l117"><span class="ln">117  </span></a>                                    padx = </span><span class="s3">20</span><span class="s0">,</span><span class="s1"> 
+<a name="l118"><span class="ln">118  </span></a>                                    font = </span><span class="s2">&quot;Verdana 16 bold&quot;</span><span class="s0">,</span><span class="s1"> 
+<a name="l119"><span class="ln">119  </span></a>                                    justify = CENTER</span><span class="s0">,</span><span class="s1"> 
+<a name="l120"><span class="ln">120  </span></a>                                    width=</span><span class="s3">60</span><span class="s1">).grid(row=</span><span class="s3">0</span><span class="s0">, </span><span class="s1">columnspan = </span><span class="s3">5</span><span class="s1">) 
+<a name="l121"><span class="ln">121  </span></a>            filemenu.add_command(label=</span><span class="s2">&quot;Logout&quot;</span><span class="s0">, </span><span class="s1">command= </span><span class="s0">lambda</span><span class="s1">: self.logoutCheck()) 
+<a name="l122"><span class="ln">122  </span></a>        </span><span class="s0">else</span><span class="s1">: 
+<a name="l123"><span class="ln">123  </span></a>            messagebox.showwarning(</span><span class="s2">&quot;Problem!&quot;</span><span class="s0">,</span><span class="s2">&quot;Username and/or password not recognised&quot;</span><span class="s1">) 
+<a name="l124"><span class="ln">124  </span></a> 
+<a name="l125"><span class="ln">125  </span></a> 
+<a name="l126"><span class="ln">126  </span></a>    </span><span class="s0">def </span><span class="s1">aboutApp(self): 
+<a name="l127"><span class="ln">127  </span></a>        messagebox.showinfo(</span><span class="s2">&quot;Tree School Road System&quot;</span><span class="s0">, </span><span class="s2">&quot;This system has been developed by and for the strict usage of teachers and/or support staff at Tree Road School. If you have any queries or require your log in details be re-set, please contact the system administrator.&quot;</span><span class="s1">) 
+<a name="l128"><span class="ln">128  </span></a> 
+<a name="l129"><span class="ln">129  </span></a> 
+<a name="l130"><span class="ln">130  </span></a>    </span><span class="s0">def </span><span class="s1">logoutCheck(self): 
+<a name="l131"><span class="ln">131  </span></a>        result = messagebox.askyesno(</span><span class="s2">&quot;Are you sure you want to logout?&quot;</span><span class="s0">,</span><span class="s2">&quot;If you click yes, you will be logged out and the system closed down.&quot;</span><span class="s1">) 
+<a name="l132"><span class="ln">132  </span></a>        </span><span class="s0">if </span><span class="s1">result == </span><span class="s0">True</span><span class="s1">: 
+<a name="l133"><span class="ln">133  </span></a>            quit() 
+<a name="l134"><span class="ln">134  </span></a>        </span><span class="s0">else</span><span class="s1">: 
+<a name="l135"><span class="ln">135  </span></a>            </span><span class="s0">return</span><span class="s1"> 
+<a name="l136"><span class="ln">136  </span></a> 
+<a name="l137"><span class="ln">137  </span></a> 
+<a name="l138"><span class="ln">138  </span></a>    </span><span class="s0">def </span><span class="s1">addNewStudentMenu(self): 
+<a name="l139"><span class="ln">139  </span></a>        </span><span class="s4"># self.logoutBtn.grid(row=10,column=1,columnspan=1)</span><span class="s1"> 
+<a name="l140"><span class="ln">140  </span></a>        </span><span class="s4"># self.quitBtn.grid(row=10,column=2,columnspan=1)</span><span class="s1"> 
+<a name="l141"><span class="ln">141  </span></a>        self.genderBtn.grid_remove() 
+<a name="l142"><span class="ln">142  </span></a>        self.houseBtn.grid_remove() 
+<a name="l143"><span class="ln">143  </span></a>        self.emailBtn.grid_remove() 
+<a name="l144"><span class="ln">144  </span></a>        self.firstNameLbl.grid(row=</span><span class="s3">2</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l145"><span class="ln">145  </span></a>        self.surnameLbl.grid(row=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l146"><span class="ln">146  </span></a>        self.addressLbl.grid(row=</span><span class="s3">4</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l147"><span class="ln">147  </span></a>        self.telNumberLbl.grid(row=</span><span class="s3">5</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l148"><span class="ln">148  </span></a>        self.DOBLbl.grid(row=</span><span class="s3">6</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l149"><span class="ln">149  </span></a>        self.genderLbl.grid(row=</span><span class="s3">7</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l150"><span class="ln">150  </span></a>        self.tutorGroupLbl.grid(row=</span><span class="s3">8</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l151"><span class="ln">151  </span></a>        self.uniqueEmailLbl.grid(row=</span><span class="s3">9</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l152"><span class="ln">152  </span></a>        self.firstName.grid(row=</span><span class="s3">2</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l153"><span class="ln">153  </span></a>        self.surname.grid(row=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l154"><span class="ln">154  </span></a>        self.address.grid(row=</span><span class="s3">4</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l155"><span class="ln">155  </span></a>        self.telNumber.grid(row=</span><span class="s3">5</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l156"><span class="ln">156  </span></a>        self.DOB.grid(row=</span><span class="s3">6</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l157"><span class="ln">157  </span></a>        self.gender.grid(row=</span><span class="s3">7</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l158"><span class="ln">158  </span></a>        self.tutorGroup.grid(row=</span><span class="s3">8</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l159"><span class="ln">159  </span></a>        self.uniqueEmail.grid(row=</span><span class="s3">9</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l160"><span class="ln">160  </span></a>        self.saveBtn.grid(row=</span><span class="s3">9</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">3</span><span class="s1">) 
+<a name="l161"><span class="ln">161  </span></a>        self.textPad.grid_remove() 
+<a name="l162"><span class="ln">162  </span></a>        self.locateBtn.grid_remove() 
+<a name="l163"><span class="ln">163  </span></a>        self.locateLbl.grid_remove() 
+<a name="l164"><span class="ln">164  </span></a>        self.uniqueId.grid_remove() 
+<a name="l165"><span class="ln">165  </span></a>        self.updateBtn.grid_remove() 
+<a name="l166"><span class="ln">166  </span></a>        self.updateIdEntry.grid_remove() 
+<a name="l167"><span class="ln">167  </span></a>        self.updateIdLbl.grid_remove() 
+<a name="l168"><span class="ln">168  </span></a>        self.updateIdTitleLbl.grid_remove() 
+<a name="l169"><span class="ln">169  </span></a> 
+<a name="l170"><span class="ln">170  </span></a> 
+<a name="l171"><span class="ln">171  </span></a>    </span><span class="s0">def </span><span class="s1">addNewStudent(self): 
+<a name="l172"><span class="ln">172  </span></a>        firstname = self.firstName.get() 
+<a name="l173"><span class="ln">173  </span></a>        surname = self.surname.get() 
+<a name="l174"><span class="ln">174  </span></a>        address = self.address.get() 
+<a name="l175"><span class="ln">175  </span></a>        tel = self.telNumber.get() 
+<a name="l176"><span class="ln">176  </span></a>        dob = self.DOB.get() 
+<a name="l177"><span class="ln">177  </span></a>        gender = self.gender.get() 
+<a name="l178"><span class="ln">178  </span></a>        ttrgrp = self.tutorGroup.get() 
+<a name="l179"><span class="ln">179  </span></a>        email = self.uniqueEmail.get() 
+<a name="l180"><span class="ln">180  </span></a>        result = messagebox.askyesno(</span><span class="s2">&quot;Have you entered the details correctly?&quot;</span><span class="s0">,</span><span class="s2">&quot;If you click yes, a new student record will be created.&quot;</span><span class="s1">) 
+<a name="l181"><span class="ln">181  </span></a>        </span><span class="s0">if </span><span class="s1">result == </span><span class="s0">True</span><span class="s1">: 
+<a name="l182"><span class="ln">182  </span></a>            newSchool.addStudentWithPopUp(firstname</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">tel</span><span class="s0">, </span><span class="s1">dob</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">ttrgrp</span><span class="s0">, </span><span class="s1">email) 
+<a name="l183"><span class="ln">183  </span></a>            self.firstName.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l184"><span class="ln">184  </span></a>            self.surname.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l185"><span class="ln">185  </span></a>            self.address.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l186"><span class="ln">186  </span></a>            self.telNumber.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l187"><span class="ln">187  </span></a>            self.DOB.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l188"><span class="ln">188  </span></a>            self.gender.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l189"><span class="ln">189  </span></a>            self.tutorGroup.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l190"><span class="ln">190  </span></a>            self.uniqueEmail.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l191"><span class="ln">191  </span></a>        </span><span class="s0">else</span><span class="s1">: 
+<a name="l192"><span class="ln">192  </span></a>            </span><span class="s0">return</span><span class="s1"> 
+<a name="l193"><span class="ln">193  </span></a> 
+<a name="l194"><span class="ln">194  </span></a> 
+<a name="l195"><span class="ln">195  </span></a>    </span><span class="s0">def </span><span class="s1">retrieveAllStudentsMenu(self): 
+<a name="l196"><span class="ln">196  </span></a>        self.genderBtn.grid_remove() 
+<a name="l197"><span class="ln">197  </span></a>        self.houseBtn.grid_remove() 
+<a name="l198"><span class="ln">198  </span></a>        self.emailBtn.grid_remove() 
+<a name="l199"><span class="ln">199  </span></a>        self.updateBtn.grid_remove() 
+<a name="l200"><span class="ln">200  </span></a>        self.saveBtn.grid_remove() 
+<a name="l201"><span class="ln">201  </span></a>        self.firstName.grid_remove() 
+<a name="l202"><span class="ln">202  </span></a>        self.surname.grid_remove() 
+<a name="l203"><span class="ln">203  </span></a>        self.address.grid_remove() 
+<a name="l204"><span class="ln">204  </span></a>        self.telNumber.grid_remove() 
+<a name="l205"><span class="ln">205  </span></a>        self.DOB.grid_remove() 
+<a name="l206"><span class="ln">206  </span></a>        self.gender.grid_remove() 
+<a name="l207"><span class="ln">207  </span></a>        self.tutorGroup.grid_remove() 
+<a name="l208"><span class="ln">208  </span></a>        self.uniqueEmail.grid_remove() 
+<a name="l209"><span class="ln">209  </span></a>        self.firstNameLbl.grid_remove() 
+<a name="l210"><span class="ln">210  </span></a>        self.surnameLbl.grid_remove() 
+<a name="l211"><span class="ln">211  </span></a>        self.addressLbl.grid_remove() 
+<a name="l212"><span class="ln">212  </span></a>        self.telNumberLbl.grid_remove() 
+<a name="l213"><span class="ln">213  </span></a>        self.DOBLbl.grid_remove() 
+<a name="l214"><span class="ln">214  </span></a>        self.genderLbl.grid_remove() 
+<a name="l215"><span class="ln">215  </span></a>        self.tutorGroupLbl.grid_remove() 
+<a name="l216"><span class="ln">216  </span></a>        self.uniqueEmailLbl.grid_remove() 
+<a name="l217"><span class="ln">217  </span></a>        self.textPad.grid_remove() 
+<a name="l218"><span class="ln">218  </span></a>        self.locateBtn.grid_remove() 
+<a name="l219"><span class="ln">219  </span></a>        self.locateLbl.grid_remove() 
+<a name="l220"><span class="ln">220  </span></a>        self.uniqueId.grid_remove() 
+<a name="l221"><span class="ln">221  </span></a>        self.updateIdEntry.grid_remove() 
+<a name="l222"><span class="ln">222  </span></a>        self.updateIdLbl.grid_remove() 
+<a name="l223"><span class="ln">223  </span></a>        self.updateIdTitleLbl.grid_remove() 
+<a name="l224"><span class="ln">224  </span></a>        self.textPad.grid(row=</span><span class="s3">12</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">6</span><span class="s1">) 
+<a name="l225"><span class="ln">225  </span></a>        self.textPad.delete(</span><span class="s2">'1.0'</span><span class="s0">,</span><span class="s1">END) 
+<a name="l226"><span class="ln">226  </span></a>        newSchool.clearStudentsArray() 
+<a name="l227"><span class="ln">227  </span></a>        newSchool.loadAllStudents() 
+<a name="l228"><span class="ln">228  </span></a>        inputString = newSchool.viewAllStudents() 
+<a name="l229"><span class="ln">229  </span></a>        print(inputString) 
+<a name="l230"><span class="ln">230  </span></a>        self.textPad.insert(END</span><span class="s0">, </span><span class="s1">newSchool.viewAllStudents()) 
+<a name="l231"><span class="ln">231  </span></a>        </span><span class="s0">return</span><span class="s1"> 
+<a name="l232"><span class="ln">232  </span></a> 
+<a name="l233"><span class="ln">233  </span></a> 
+<a name="l234"><span class="ln">234  </span></a>    </span><span class="s0">def </span><span class="s1">locateAStudentMenu(self): 
+<a name="l235"><span class="ln">235  </span></a>        self.genderBtn.grid_remove() 
+<a name="l236"><span class="ln">236  </span></a>        self.houseBtn.grid_remove() 
+<a name="l237"><span class="ln">237  </span></a>        self.emailBtn.grid_remove() 
+<a name="l238"><span class="ln">238  </span></a>        self.updateBtn.grid_remove() 
+<a name="l239"><span class="ln">239  </span></a>        self.saveBtn.grid_remove() 
+<a name="l240"><span class="ln">240  </span></a>        self.firstName.grid_remove() 
+<a name="l241"><span class="ln">241  </span></a>        self.surname.grid_remove() 
+<a name="l242"><span class="ln">242  </span></a>        self.address.grid_remove() 
+<a name="l243"><span class="ln">243  </span></a>        self.telNumber.grid_remove() 
+<a name="l244"><span class="ln">244  </span></a>        self.DOB.grid_remove() 
+<a name="l245"><span class="ln">245  </span></a>        self.gender.grid_remove() 
+<a name="l246"><span class="ln">246  </span></a>        self.tutorGroup.grid_remove() 
+<a name="l247"><span class="ln">247  </span></a>        self.uniqueEmail.grid_remove() 
+<a name="l248"><span class="ln">248  </span></a>        self.firstNameLbl.grid_remove() 
+<a name="l249"><span class="ln">249  </span></a>        self.surnameLbl.grid_remove() 
+<a name="l250"><span class="ln">250  </span></a>        self.addressLbl.grid_remove() 
+<a name="l251"><span class="ln">251  </span></a>        self.telNumberLbl.grid_remove() 
+<a name="l252"><span class="ln">252  </span></a>        self.DOBLbl.grid_remove() 
+<a name="l253"><span class="ln">253  </span></a>        self.genderLbl.grid_remove() 
+<a name="l254"><span class="ln">254  </span></a>        self.tutorGroupLbl.grid_remove() 
+<a name="l255"><span class="ln">255  </span></a>        self.uniqueEmailLbl.grid_remove() 
+<a name="l256"><span class="ln">256  </span></a>        self.updateIdEntry.grid_remove() 
+<a name="l257"><span class="ln">257  </span></a>        self.updateIdLbl.grid_remove() 
+<a name="l258"><span class="ln">258  </span></a>        self.updateIdTitleLbl.grid_remove() 
+<a name="l259"><span class="ln">259  </span></a>        self.locateLbl.grid(row=</span><span class="s3">3</span><span class="s0">, </span><span class="s1">column=</span><span class="s3">0</span><span class="s0">,</span><span class="s1">columnspan = </span><span class="s3">2</span><span class="s1">) 
+<a name="l260"><span class="ln">260  </span></a>        self.uniqueId.grid(row=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">2</span><span class="s0">, </span><span class="s1">columnspan = </span><span class="s3">2</span><span class="s1">) 
+<a name="l261"><span class="ln">261  </span></a>        self.locateBtn.grid(row=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">4</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">1</span><span class="s1">) 
+<a name="l262"><span class="ln">262  </span></a>        self.textPad.grid(row=</span><span class="s3">12</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">6</span><span class="s1">) 
+<a name="l263"><span class="ln">263  </span></a>        self.textPad.delete(</span><span class="s2">'1.0'</span><span class="s0">,</span><span class="s1">END) 
+<a name="l264"><span class="ln">264  </span></a>        </span><span class="s0">return</span><span class="s1"> 
+<a name="l265"><span class="ln">265  </span></a> 
+<a name="l266"><span class="ln">266  </span></a> 
+<a name="l267"><span class="ln">267  </span></a>    </span><span class="s0">def </span><span class="s1">locateAStudent(self): 
+<a name="l268"><span class="ln">268  </span></a>        self.textPad.delete(</span><span class="s2">'1.0'</span><span class="s0">,</span><span class="s1">END) 
+<a name="l269"><span class="ln">269  </span></a>        uniqueId = self.uniqueId.get() 
+<a name="l270"><span class="ln">270  </span></a>        print(</span><span class="s2">'The unique ID is: ' </span><span class="s1">+ uniqueId) 
+<a name="l271"><span class="ln">271  </span></a>        answer = newSchool.findAStudent(uniqueId) 
+<a name="l272"><span class="ln">272  </span></a>        </span><span class="s0">if </span><span class="s1">answer </span><span class="s0">is not None</span><span class="s1">: 
+<a name="l273"><span class="ln">273  </span></a>            print(</span><span class="s2">'The answer variable is: ' </span><span class="s1">+ answer) 
+<a name="l274"><span class="ln">274  </span></a>            self.textPad.insert(END</span><span class="s0">, </span><span class="s1">answer) 
+<a name="l275"><span class="ln">275  </span></a>        </span><span class="s0">else</span><span class="s1">: 
+<a name="l276"><span class="ln">276  </span></a>            answerResult = </span><span class="s2">'The student for that ID cannot be found.</span><span class="s0">\n\n</span><span class="s2">Please check the ID number and try again.'</span><span class="s1"> 
+<a name="l277"><span class="ln">277  </span></a>            self.textPad.insert(END</span><span class="s0">, </span><span class="s1">answerResult) 
+<a name="l278"><span class="ln">278  </span></a> 
+<a name="l279"><span class="ln">279  </span></a> 
+<a name="l280"><span class="ln">280  </span></a>    </span><span class="s0">def </span><span class="s1">updateAStudentMenu(self): 
+<a name="l281"><span class="ln">281  </span></a>        self.genderBtn.grid_remove() 
+<a name="l282"><span class="ln">282  </span></a>        self.houseBtn.grid_remove() 
+<a name="l283"><span class="ln">283  </span></a>        self.emailBtn.grid_remove() 
+<a name="l284"><span class="ln">284  </span></a>        self.saveBtn.grid_remove() 
+<a name="l285"><span class="ln">285  </span></a>        self.updateIdTitleLbl.grid(row=</span><span class="s3">2</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s0">, </span><span class="s1">columnspan = </span><span class="s3">6</span><span class="s1">) 
+<a name="l286"><span class="ln">286  </span></a>        self.updateIdEntry.grid(row=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l287"><span class="ln">287  </span></a>        self.updateIdLbl.grid(row=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l288"><span class="ln">288  </span></a>        self.firstNameLbl.grid(row=</span><span class="s3">4</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l289"><span class="ln">289  </span></a>        self.surnameLbl.grid(row=</span><span class="s3">5</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l290"><span class="ln">290  </span></a>        self.addressLbl.grid(row=</span><span class="s3">6</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l291"><span class="ln">291  </span></a>        self.telNumberLbl.grid(row=</span><span class="s3">7</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l292"><span class="ln">292  </span></a>        self.DOBLbl.grid(row=</span><span class="s3">8</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l293"><span class="ln">293  </span></a>        self.genderLbl.grid(row=</span><span class="s3">9</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l294"><span class="ln">294  </span></a>        self.tutorGroupLbl.grid(row=</span><span class="s3">10</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l295"><span class="ln">295  </span></a>        self.uniqueEmailLbl.grid(row=</span><span class="s3">11</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">0</span><span class="s1">) 
+<a name="l296"><span class="ln">296  </span></a>        self.firstName.grid(row=</span><span class="s3">4</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l297"><span class="ln">297  </span></a>        self.surname.grid(row=</span><span class="s3">5</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l298"><span class="ln">298  </span></a>        self.address.grid(row=</span><span class="s3">6</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l299"><span class="ln">299  </span></a>        self.telNumber.grid(row=</span><span class="s3">7</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l300"><span class="ln">300  </span></a>        self.DOB.grid(row=</span><span class="s3">8</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l301"><span class="ln">301  </span></a>        self.gender.grid(row=</span><span class="s3">9</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l302"><span class="ln">302  </span></a>        self.tutorGroup.grid(row=</span><span class="s3">10</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l303"><span class="ln">303  </span></a>        self.uniqueEmail.grid(row=</span><span class="s3">11</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">1</span><span class="s1">) 
+<a name="l304"><span class="ln">304  </span></a>        self.locateLbl.grid_remove() 
+<a name="l305"><span class="ln">305  </span></a>        self.uniqueId.grid_remove() 
+<a name="l306"><span class="ln">306  </span></a>        self.locateBtn.grid_remove() 
+<a name="l307"><span class="ln">307  </span></a>        self.textPad.grid_remove() 
+<a name="l308"><span class="ln">308  </span></a>        self.updateBtn.grid(row=</span><span class="s3">11</span><span class="s0">,</span><span class="s1">column=</span><span class="s3">3</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">1</span><span class="s1">) 
+<a name="l309"><span class="ln">309  </span></a>        </span><span class="s0">return</span><span class="s1"> 
+<a name="l310"><span class="ln">310  </span></a> 
+<a name="l311"><span class="ln">311  </span></a> 
+<a name="l312"><span class="ln">312  </span></a>    </span><span class="s0">def </span><span class="s1">updateStudent(self): 
+<a name="l313"><span class="ln">313  </span></a>        idNumber = self.updateIdEntry.get() 
+<a name="l314"><span class="ln">314  </span></a>        firstname = self.firstName.get() 
+<a name="l315"><span class="ln">315  </span></a>        surname = self.surname.get() 
+<a name="l316"><span class="ln">316  </span></a>        address = self.address.get() 
+<a name="l317"><span class="ln">317  </span></a>        tel = self.telNumber.get() 
+<a name="l318"><span class="ln">318  </span></a>        dob = self.DOB.get() 
+<a name="l319"><span class="ln">319  </span></a>        gender = self.gender.get() 
+<a name="l320"><span class="ln">320  </span></a>        ttrgrp = self.tutorGroup.get() 
+<a name="l321"><span class="ln">321  </span></a>        email = self.uniqueEmail.get() 
+<a name="l322"><span class="ln">322  </span></a>        result = messagebox.askyesno(</span><span class="s2">&quot;Do you want to proceed?&quot;</span><span class="s0">,</span><span class="s2">&quot;If you click yes, the students details will be overwritten.&quot;</span><span class="s1">) 
+<a name="l323"><span class="ln">323  </span></a>        </span><span class="s0">if </span><span class="s1">result == </span><span class="s0">True</span><span class="s1">: 
+<a name="l324"><span class="ln">324  </span></a>            </span><span class="s0">if </span><span class="s1">newSchool.updateStudentWithPopUp(idNumber</span><span class="s0">, </span><span class="s1">firstname</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">tel</span><span class="s0">, </span><span class="s1">dob</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">ttrgrp</span><span class="s0">, </span><span class="s1">email) </span><span class="s0">is True</span><span class="s1">: 
+<a name="l325"><span class="ln">325  </span></a>                self.updateIdEntry.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l326"><span class="ln">326  </span></a>                self.firstName.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l327"><span class="ln">327  </span></a>                self.surname.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l328"><span class="ln">328  </span></a>                self.address.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l329"><span class="ln">329  </span></a>                self.telNumber.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l330"><span class="ln">330  </span></a>                self.DOB.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l331"><span class="ln">331  </span></a>                self.gender.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l332"><span class="ln">332  </span></a>                self.tutorGroup.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l333"><span class="ln">333  </span></a>                self.uniqueEmail.delete(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">END) 
+<a name="l334"><span class="ln">334  </span></a>            </span><span class="s0">else</span><span class="s1">: 
+<a name="l335"><span class="ln">335  </span></a>                messagebox.showinfo(</span><span class="s2">&quot;Error!&quot;</span><span class="s0">, </span><span class="s2">'Student record could not be found and/or updated.  Please try again.'</span><span class="s1">) 
+<a name="l336"><span class="ln">336  </span></a>        </span><span class="s0">else</span><span class="s1">: 
+<a name="l337"><span class="ln">337  </span></a>            </span><span class="s0">return</span><span class="s1"> 
+<a name="l338"><span class="ln">338  </span></a> 
+<a name="l339"><span class="ln">339  </span></a> 
+<a name="l340"><span class="ln">340  </span></a>    </span><span class="s0">def </span><span class="s1">writeString(self</span><span class="s0">, </span><span class="s1">fileName</span><span class="s0">,</span><span class="s1">insertString): 
+<a name="l341"><span class="ln">341  </span></a>        doc = SimpleDocTemplate(fileName</span><span class="s0">,</span><span class="s1">pagesize=letter</span><span class="s0">,</span><span class="s1"> 
+<a name="l342"><span class="ln">342  </span></a>                                rightMargin=</span><span class="s3">72</span><span class="s0">,</span><span class="s1">leftMargin=</span><span class="s3">72</span><span class="s0">,</span><span class="s1"> 
+<a name="l343"><span class="ln">343  </span></a>                                topMargin=</span><span class="s3">72</span><span class="s0">,</span><span class="s1">bottomMargin=</span><span class="s3">18</span><span class="s1">) 
+<a name="l344"><span class="ln">344  </span></a>        Story=[] 
+<a name="l345"><span class="ln">345  </span></a>        logo = </span><span class="s2">&quot;../.idea/images/school.gif&quot;</span><span class="s1"> 
+<a name="l346"><span class="ln">346  </span></a> 
+<a name="l347"><span class="ln">347  </span></a>        formatted_time = time.ctime() 
+<a name="l348"><span class="ln">348  </span></a> 
+<a name="l349"><span class="ln">349  </span></a>        im = Image(logo</span><span class="s0">, </span><span class="s3">2</span><span class="s1">*inch</span><span class="s0">, </span><span class="s3">2</span><span class="s1">*inch) 
+<a name="l350"><span class="ln">350  </span></a>        Story.append(im) 
+<a name="l351"><span class="ln">351  </span></a> 
+<a name="l352"><span class="ln">352  </span></a>        styles=getSampleStyleSheet() 
+<a name="l353"><span class="ln">353  </span></a>        styles.add(ParagraphStyle(name=</span><span class="s2">'Justify'</span><span class="s0">, </span><span class="s1">alignment=TA_JUSTIFY)) 
+<a name="l354"><span class="ln">354  </span></a>        ptext = </span><span class="s2">'&lt;font size=12&gt;%s&lt;/font&gt;' </span><span class="s1">% formatted_time 
+<a name="l355"><span class="ln">355  </span></a> 
+<a name="l356"><span class="ln">356  </span></a>        Story.append(Paragraph(ptext</span><span class="s0">, </span><span class="s1">styles[</span><span class="s2">&quot;Normal&quot;</span><span class="s1">])) 
+<a name="l357"><span class="ln">357  </span></a>        Story.append(Spacer(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">12</span><span class="s1">)) 
+<a name="l358"><span class="ln">358  </span></a> 
+<a name="l359"><span class="ln">359  </span></a>        ptext = insertString 
+<a name="l360"><span class="ln">360  </span></a> 
+<a name="l361"><span class="ln">361  </span></a>        Story.append(Paragraph(ptext</span><span class="s0">, </span><span class="s1">styles[</span><span class="s2">&quot;Justify&quot;</span><span class="s1">])) 
+<a name="l362"><span class="ln">362  </span></a>        Story.append(Spacer(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">12</span><span class="s1">)) 
+<a name="l363"><span class="ln">363  </span></a> 
+<a name="l364"><span class="ln">364  </span></a>        ptext = </span><span class="s2">'&lt;font size=12&gt;--- END OF REPORT ---&lt;/font&gt;'</span><span class="s1"> 
+<a name="l365"><span class="ln">365  </span></a>        Story.append(Paragraph(ptext</span><span class="s0">, </span><span class="s1">styles[</span><span class="s2">&quot;Normal&quot;</span><span class="s1">])) 
+<a name="l366"><span class="ln">366  </span></a>        Story.append(Spacer(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">12</span><span class="s1">)) 
+<a name="l367"><span class="ln">367  </span></a>        doc.build(Story) 
+<a name="l368"><span class="ln">368  </span></a>        </span><span class="s0">if </span><span class="s1">os.name == </span><span class="s2">'nt'</span><span class="s1">: 
+<a name="l369"><span class="ln">369  </span></a>            os.system(</span><span class="s2">&quot;start &quot;</span><span class="s1">+fileName) 
+<a name="l370"><span class="ln">370  </span></a>        </span><span class="s0">elif </span><span class="s1">os.name == </span><span class="s2">'posix'</span><span class="s1">: 
+<a name="l371"><span class="ln">371  </span></a>            os.system(</span><span class="s2">&quot;open &quot;</span><span class="s1">+fileName) 
+<a name="l372"><span class="ln">372  </span></a>        </span><span class="s0">elif </span><span class="s1">os.name == </span><span class="s2">'mac'</span><span class="s1">: 
+<a name="l373"><span class="ln">373  </span></a>            os.system(</span><span class="s2">&quot;open &quot;</span><span class="s1">+fileName) 
+<a name="l374"><span class="ln">374  </span></a>        </span><span class="s0">else</span><span class="s1">: 
+<a name="l375"><span class="ln">375  </span></a>            os.sysconf(</span><span class="s2">&quot;open &quot;</span><span class="s1">+fileName) 
+<a name="l376"><span class="ln">376  </span></a> 
+<a name="l377"><span class="ln">377  </span></a> 
+<a name="l378"><span class="ln">378  </span></a>    </span><span class="s0">def </span><span class="s1">runReportsMenu(self): 
+<a name="l379"><span class="ln">379  </span></a>        self.genderBtn.grid(row=</span><span class="s3">4</span><span class="s0">, </span><span class="s1">column=</span><span class="s3">0</span><span class="s0">, </span><span class="s1">columnspan=</span><span class="s3">6</span><span class="s1">) 
+<a name="l380"><span class="ln">380  </span></a>        self.houseBtn.grid(row = </span><span class="s3">6</span><span class="s0">, </span><span class="s1">column=</span><span class="s3">0</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">6</span><span class="s1">) 
+<a name="l381"><span class="ln">381  </span></a>        self.emailBtn.grid(row = </span><span class="s3">8</span><span class="s0">, </span><span class="s1">column=</span><span class="s3">0</span><span class="s0">,</span><span class="s1">columnspan=</span><span class="s3">6</span><span class="s1">) 
+<a name="l382"><span class="ln">382  </span></a>        self.saveBtn.grid_remove() 
+<a name="l383"><span class="ln">383  </span></a>        self.updateIdTitleLbl.grid_remove() 
+<a name="l384"><span class="ln">384  </span></a>        self.updateIdEntry.grid_remove() 
+<a name="l385"><span class="ln">385  </span></a>        self.updateIdLbl.grid_remove() 
+<a name="l386"><span class="ln">386  </span></a>        self.firstNameLbl.grid_remove() 
+<a name="l387"><span class="ln">387  </span></a>        self.surnameLbl.grid_remove() 
+<a name="l388"><span class="ln">388  </span></a>        self.addressLbl.grid_remove() 
+<a name="l389"><span class="ln">389  </span></a>        self.telNumberLbl.grid_remove() 
+<a name="l390"><span class="ln">390  </span></a>        self.DOBLbl.grid_remove() 
+<a name="l391"><span class="ln">391  </span></a>        self.genderLbl.grid_remove() 
+<a name="l392"><span class="ln">392  </span></a>        self.tutorGroupLbl.grid_remove() 
+<a name="l393"><span class="ln">393  </span></a>        self.uniqueEmailLbl.grid_remove() 
+<a name="l394"><span class="ln">394  </span></a>        self.firstName.grid_remove() 
+<a name="l395"><span class="ln">395  </span></a>        self.surname.grid_remove() 
+<a name="l396"><span class="ln">396  </span></a>        self.address.grid_remove() 
+<a name="l397"><span class="ln">397  </span></a>        self.telNumber.grid_remove() 
+<a name="l398"><span class="ln">398  </span></a>        self.DOB.grid_remove() 
+<a name="l399"><span class="ln">399  </span></a>        self.gender.grid_remove() 
+<a name="l400"><span class="ln">400  </span></a>        self.tutorGroup.grid_remove() 
+<a name="l401"><span class="ln">401  </span></a>        self.uniqueEmail.grid_remove() 
+<a name="l402"><span class="ln">402  </span></a>        self.locateLbl.grid_remove() 
+<a name="l403"><span class="ln">403  </span></a>        self.uniqueId.grid_remove() 
+<a name="l404"><span class="ln">404  </span></a>        self.locateBtn.grid_remove() 
+<a name="l405"><span class="ln">405  </span></a>        self.textPad.grid_remove() 
+<a name="l406"><span class="ln">406  </span></a>        self.updateBtn.grid_remove() 
+<a name="l407"><span class="ln">407  </span></a> 
+<a name="l408"><span class="ln">408  </span></a> 
+<a name="l409"><span class="ln">409  </span></a>    </span><span class="s0">def </span><span class="s1">genderReport(self): 
+<a name="l410"><span class="ln">410  </span></a>        self.writeString(</span><span class="s2">&quot;Report-Gender.pdf&quot;</span><span class="s0">,</span><span class="s1">newSchool.genderListReport()) 
+<a name="l411"><span class="ln">411  </span></a> 
+<a name="l412"><span class="ln">412  </span></a> 
+<a name="l413"><span class="ln">413  </span></a>    </span><span class="s0">def </span><span class="s1">emailListReport(self): 
+<a name="l414"><span class="ln">414  </span></a>        self.writeString(</span><span class="s2">&quot;Report-Email.pdf&quot;</span><span class="s0">,</span><span class="s1">newSchool.emailListReport()) 
+<a name="l415"><span class="ln">415  </span></a> 
+<a name="l416"><span class="ln">416  </span></a> 
+<a name="l417"><span class="ln">417  </span></a>    </span><span class="s0">def </span><span class="s1">missingDetailsReport(self): 
+<a name="l418"><span class="ln">418  </span></a>        self.writeString(</span><span class="s2">&quot;Report-Missing.pdf&quot;</span><span class="s0">,</span><span class="s1">newSchool.emptyStudentReport()) 
+<a name="l419"><span class="ln">419  </span></a> 
+<a name="l420"><span class="ln">420  </span></a> 
+<a name="l421"><span class="ln">421  </span></a></span><span class="s4">#Set up menu bar</span><span class="s1"> 
+<a name="l422"><span class="ln">422  </span></a>menubar = Menu(root) 
+<a name="l423"><span class="ln">423  </span></a>filemenu = Menu(menubar</span><span class="s0">, </span><span class="s1">tearoff=</span><span class="s3">0</span><span class="s1">) 
+<a name="l424"><span class="ln">424  </span></a>filemenu.add_separator() 
+<a name="l425"><span class="ln">425  </span></a>filemenu.add_command(label=</span><span class="s2">&quot;Exit&quot;</span><span class="s0">, </span><span class="s1">command= </span><span class="s0">lambda</span><span class="s1">: exit()) 
+<a name="l426"><span class="ln">426  </span></a>menubar.add_cascade(label=</span><span class="s2">&quot;File&quot;</span><span class="s0">, </span><span class="s1">menu=filemenu) 
+<a name="l427"><span class="ln">427  </span></a>helpmenu = Menu(menubar</span><span class="s0">, </span><span class="s1">tearoff=</span><span class="s3">0</span><span class="s1">) 
+<a name="l428"><span class="ln">428  </span></a>helpmenu.add_command(label=</span><span class="s2">&quot;About...&quot;</span><span class="s0">, </span><span class="s1">command= </span><span class="s0">lambda</span><span class="s1">: app.aboutApp()) 
+<a name="l429"><span class="ln">429  </span></a>menubar.add_cascade(label=</span><span class="s2">&quot;Help&quot;</span><span class="s0">, </span><span class="s1">menu=helpmenu) 
+<a name="l430"><span class="ln">430  </span></a>root.config(menu=menubar) 
+<a name="l431"><span class="ln">431  </span></a> 
+<a name="l432"><span class="ln">432  </span></a></span><span class="s4">#Run main GUI program</span><span class="s1"> 
+<a name="l433"><span class="ln">433  </span></a>app = Main(root) 
+<a name="l434"><span class="ln">434  </span></a>root.mainloop() 
+<a name="l435"><span class="ln">435  </span></a> 
+<a name="l436"><span class="ln">436  </span></a></span></pre>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>Student.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(104,151,187); }
+.s3 { color: rgb(106,135,89); }
+.s4 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Student.py</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">import </span><span class="s1">random 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">class </span><span class="s1">Student: 
+<a name="l4"><span class="ln">4    </span></a>    counterId = </span><span class="s2">1</span><span class="s1"> 
+<a name="l5"><span class="ln">5    </span></a> 
+<a name="l6"><span class="ln">6    </span></a>    </span><span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l7"><span class="ln">7    </span></a>        self.firstName = firstName 
+<a name="l8"><span class="ln">8    </span></a>        self.surname = surname 
+<a name="l9"><span class="ln">9    </span></a>        self.address = address 
+<a name="l10"><span class="ln">10   </span></a>        self.telNumber = telNumber 
+<a name="l11"><span class="ln">11   </span></a>        self.DOB = DOB 
+<a name="l12"><span class="ln">12   </span></a>        self.gender = gender 
+<a name="l13"><span class="ln">13   </span></a>        self.tutorGroup = tutorGroup 
+<a name="l14"><span class="ln">14   </span></a>        self.uniqueEmail = uniqueEmail 
+<a name="l15"><span class="ln">15   </span></a>        self.random = random.randint(</span><span class="s2">101</span><span class="s0">,</span><span class="s2">999</span><span class="s1">) 
+<a name="l16"><span class="ln">16   </span></a>        self.uniqueId = str(self.random) + </span><span class="s3">'-' </span><span class="s1">+ self.firstName[:</span><span class="s2">3</span><span class="s1">] 
+<a name="l17"><span class="ln">17   </span></a>        Student.counterId += </span><span class="s2">1</span><span class="s1"> 
+<a name="l18"><span class="ln">18   </span></a> 
+<a name="l19"><span class="ln">19   </span></a>    @classmethod 
+<a name="l20"><span class="ln">20   </span></a>    </span><span class="s0">def </span><span class="s1">newStudent(self</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l21"><span class="ln">21   </span></a>        firstName = </span><span class="s3">&quot;&quot;</span><span class="s1"> 
+<a name="l22"><span class="ln">22   </span></a>        surname = </span><span class="s3">&quot;&quot;</span><span class="s1"> 
+<a name="l23"><span class="ln">23   </span></a>        address = </span><span class="s3">&quot;&quot;</span><span class="s1"> 
+<a name="l24"><span class="ln">24   </span></a>        telNumber = </span><span class="s3">&quot;&quot;</span><span class="s1"> 
+<a name="l25"><span class="ln">25   </span></a>        DOB = </span><span class="s3">&quot;&quot;</span><span class="s1"> 
+<a name="l26"><span class="ln">26   </span></a>        gender = </span><span class="s3">&quot;&quot;</span><span class="s1"> 
+<a name="l27"><span class="ln">27   </span></a>        </span><span class="s0">return </span><span class="s1">Student(firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail) 
+<a name="l28"><span class="ln">28   </span></a> 
+<a name="l29"><span class="ln">29   </span></a>    @classmethod 
+<a name="l30"><span class="ln">30   </span></a>    </span><span class="s0">def </span><span class="s1">updateStudentInfo(self</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l31"><span class="ln">31   </span></a>        studentId = self.uniqueId 
+<a name="l32"><span class="ln">32   </span></a>        self.firstName = firstName 
+<a name="l33"><span class="ln">33   </span></a>        self.surname = surname 
+<a name="l34"><span class="ln">34   </span></a>        self.address = address 
+<a name="l35"><span class="ln">35   </span></a>        self.telNumber = telNumber 
+<a name="l36"><span class="ln">36   </span></a>        self.DOB = DOB 
+<a name="l37"><span class="ln">37   </span></a>        self.gender = gender 
+<a name="l38"><span class="ln">38   </span></a>        self.tutorGroup = tutorGroup 
+<a name="l39"><span class="ln">39   </span></a>        self.uniqueEmail = uniqueEmail 
+<a name="l40"><span class="ln">40   </span></a>        self.uniqueId = studentId 
+<a name="l41"><span class="ln">41   </span></a> 
+<a name="l42"><span class="ln">42   </span></a>    </span><span class="s0">def </span><span class="s1">replacementStudentInfo(self</span><span class="s0">, </span><span class="s1">uniqueId</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l43"><span class="ln">43   </span></a>        self.firstName = firstName 
+<a name="l44"><span class="ln">44   </span></a>        self.surname = surname 
+<a name="l45"><span class="ln">45   </span></a>        self.address = address 
+<a name="l46"><span class="ln">46   </span></a>        self.telNumber = telNumber 
+<a name="l47"><span class="ln">47   </span></a>        self.DOB = DOB 
+<a name="l48"><span class="ln">48   </span></a>        self.gender = gender 
+<a name="l49"><span class="ln">49   </span></a>        self.tutorGroup = tutorGroup 
+<a name="l50"><span class="ln">50   </span></a>        self.uniqueEmail = uniqueEmail 
+<a name="l51"><span class="ln">51   </span></a>        </span><span class="s4"># self.uniqueId = uniqueId</span><span class="s1"> 
+<a name="l52"><span class="ln">52   </span></a>        self.uniqueId = uniqueId[:</span><span class="s2">3</span><span class="s1">] + </span><span class="s3">'-' </span><span class="s1">+ firstName[:</span><span class="s2">3</span><span class="s1">] 
+<a name="l53"><span class="ln">53   </span></a> 
+<a name="l54"><span class="ln">54   </span></a>    @property 
+<a name="l55"><span class="ln">55   </span></a>    </span><span class="s0">def </span><span class="s1">uniqueId(self): 
+<a name="l56"><span class="ln">56   </span></a>        </span><span class="s0">return </span><span class="s1">self.__uniqueId 
+<a name="l57"><span class="ln">57   </span></a> 
+<a name="l58"><span class="ln">58   </span></a>    @uniqueId.setter 
+<a name="l59"><span class="ln">59   </span></a>    </span><span class="s0">def </span><span class="s1">uniqueId(self</span><span class="s0">, </span><span class="s1">uniqueId): 
+<a name="l60"><span class="ln">60   </span></a>        self.__uniqueId = uniqueId 
+<a name="l61"><span class="ln">61   </span></a> 
+<a name="l62"><span class="ln">62   </span></a>    @property 
+<a name="l63"><span class="ln">63   </span></a>    </span><span class="s0">def </span><span class="s1">firstName(self): 
+<a name="l64"><span class="ln">64   </span></a>        </span><span class="s0">return </span><span class="s1">self.__firstName 
+<a name="l65"><span class="ln">65   </span></a> 
+<a name="l66"><span class="ln">66   </span></a>    @firstName.setter 
+<a name="l67"><span class="ln">67   </span></a>    </span><span class="s0">def </span><span class="s1">firstName(self</span><span class="s0">, </span><span class="s1">firstName): 
+<a name="l68"><span class="ln">68   </span></a>        self.__firstName = firstName 
+<a name="l69"><span class="ln">69   </span></a> 
+<a name="l70"><span class="ln">70   </span></a>    @property 
+<a name="l71"><span class="ln">71   </span></a>    </span><span class="s0">def </span><span class="s1">surname(self): 
+<a name="l72"><span class="ln">72   </span></a>        </span><span class="s0">return </span><span class="s1">self.__surname 
+<a name="l73"><span class="ln">73   </span></a> 
+<a name="l74"><span class="ln">74   </span></a>    @surname.setter 
+<a name="l75"><span class="ln">75   </span></a>    </span><span class="s0">def </span><span class="s1">surname(self</span><span class="s0">, </span><span class="s1">surname): 
+<a name="l76"><span class="ln">76   </span></a>        self.__surname = surname 
+<a name="l77"><span class="ln">77   </span></a> 
+<a name="l78"><span class="ln">78   </span></a>    @property 
+<a name="l79"><span class="ln">79   </span></a>    </span><span class="s0">def </span><span class="s1">address(self): 
+<a name="l80"><span class="ln">80   </span></a>        </span><span class="s0">return </span><span class="s1">self.__address 
+<a name="l81"><span class="ln">81   </span></a> 
+<a name="l82"><span class="ln">82   </span></a>    @address.setter 
+<a name="l83"><span class="ln">83   </span></a>    </span><span class="s0">def </span><span class="s1">address(self</span><span class="s0">, </span><span class="s1">address): 
+<a name="l84"><span class="ln">84   </span></a>        self.__address = address 
+<a name="l85"><span class="ln">85   </span></a> 
+<a name="l86"><span class="ln">86   </span></a>    @property 
+<a name="l87"><span class="ln">87   </span></a>    </span><span class="s0">def </span><span class="s1">telNumber(self): 
+<a name="l88"><span class="ln">88   </span></a>        </span><span class="s0">return </span><span class="s1">self.__telNumber 
+<a name="l89"><span class="ln">89   </span></a> 
+<a name="l90"><span class="ln">90   </span></a>    @telNumber.setter 
+<a name="l91"><span class="ln">91   </span></a>    </span><span class="s0">def </span><span class="s1">telNumber(self</span><span class="s0">, </span><span class="s1">telNumber): 
+<a name="l92"><span class="ln">92   </span></a>        self.__telNumber = telNumber 
+<a name="l93"><span class="ln">93   </span></a> 
+<a name="l94"><span class="ln">94   </span></a>    @property 
+<a name="l95"><span class="ln">95   </span></a>    </span><span class="s0">def </span><span class="s1">DOB(self): 
+<a name="l96"><span class="ln">96   </span></a>        </span><span class="s0">return </span><span class="s1">self.__DOB 
+<a name="l97"><span class="ln">97   </span></a> 
+<a name="l98"><span class="ln">98   </span></a>    @DOB.setter 
+<a name="l99"><span class="ln">99   </span></a>    </span><span class="s0">def </span><span class="s1">DOB(self</span><span class="s0">, </span><span class="s1">DOB): 
+<a name="l100"><span class="ln">100  </span></a>        self.__DOB = DOB 
+<a name="l101"><span class="ln">101  </span></a> 
+<a name="l102"><span class="ln">102  </span></a>    @property 
+<a name="l103"><span class="ln">103  </span></a>    </span><span class="s0">def </span><span class="s1">gender(self): 
+<a name="l104"><span class="ln">104  </span></a>        </span><span class="s0">return </span><span class="s1">self.__gender 
+<a name="l105"><span class="ln">105  </span></a> 
+<a name="l106"><span class="ln">106  </span></a>    @gender.setter 
+<a name="l107"><span class="ln">107  </span></a>    </span><span class="s0">def </span><span class="s1">gender(self</span><span class="s0">, </span><span class="s1">gender): 
+<a name="l108"><span class="ln">108  </span></a>        self.__gender = gender 
+<a name="l109"><span class="ln">109  </span></a> 
+<a name="l110"><span class="ln">110  </span></a>    @property 
+<a name="l111"><span class="ln">111  </span></a>    </span><span class="s0">def </span><span class="s1">tutorGroup(self): 
+<a name="l112"><span class="ln">112  </span></a>        </span><span class="s0">return </span><span class="s1">self.__tutorGroup 
+<a name="l113"><span class="ln">113  </span></a> 
+<a name="l114"><span class="ln">114  </span></a>    @tutorGroup.setter 
+<a name="l115"><span class="ln">115  </span></a>    </span><span class="s0">def </span><span class="s1">tutorGroup(self</span><span class="s0">, </span><span class="s1">tutorGroup): 
+<a name="l116"><span class="ln">116  </span></a>        self.__tutorGroup = tutorGroup 
+<a name="l117"><span class="ln">117  </span></a> 
+<a name="l118"><span class="ln">118  </span></a>    @property 
+<a name="l119"><span class="ln">119  </span></a>    </span><span class="s0">def </span><span class="s1">uniqueEmail(self): 
+<a name="l120"><span class="ln">120  </span></a>        </span><span class="s0">return </span><span class="s1">self.__uniqueEmail 
+<a name="l121"><span class="ln">121  </span></a> 
+<a name="l122"><span class="ln">122  </span></a>    @uniqueEmail.setter 
+<a name="l123"><span class="ln">123  </span></a>    </span><span class="s0">def </span><span class="s1">uniqueEmail(self</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l124"><span class="ln">124  </span></a>        self.__uniqueEmail = uniqueEmail 
+<a name="l125"><span class="ln">125  </span></a> 
+<a name="l126"><span class="ln">126  </span></a></span></pre>
+</body>
+</html>

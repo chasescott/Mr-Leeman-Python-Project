@@ -1,0 +1,297 @@
+<html>
+<head>
+<title>TreeRoadSchool.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(128,128,128); }
+.s3 { color: rgb(106,135,89); }
+.s4 { color: rgb(104,151,187); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+TreeRoadSchool.py</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">import </span><span class="s1">sys 
+<a name="l2"><span class="ln">2    </span></a></span><span class="s0">import </span><span class="s1">pickle 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">from </span><span class="s1">tkinter </span><span class="s0">import </span><span class="s1">* 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">from </span><span class="s1">tkinter </span><span class="s0">import </span><span class="s1">messagebox 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s0">from </span><span class="s1">Student </span><span class="s0">import </span><span class="s1">Student 
+<a name="l6"><span class="ln">6    </span></a> 
+<a name="l7"><span class="ln">7    </span></a></span><span class="s2">#VARIABLES</span><span class="s1"> 
+<a name="l8"><span class="ln">8    </span></a>PIK = </span><span class="s3">&quot;pickle.dat&quot;</span><span class="s1"> 
+<a name="l9"><span class="ln">9    </span></a>students = [] 
+<a name="l10"><span class="ln">10   </span></a>totalCount = Student.counterId 
+<a name="l11"><span class="ln">11   </span></a>maleStudents = </span><span class="s3">''</span><span class="s1"> 
+<a name="l12"><span class="ln">12   </span></a>femaleStudents = </span><span class="s3">''</span><span class="s1"> 
+<a name="l13"><span class="ln">13   </span></a> 
+<a name="l14"><span class="ln">14   </span></a></span><span class="s2">#CLASS CODE</span><span class="s1"> 
+<a name="l15"><span class="ln">15   </span></a></span><span class="s0">class </span><span class="s1">TreeRoadSchool: 
+<a name="l16"><span class="ln">16   </span></a> 
+<a name="l17"><span class="ln">17   </span></a></span><span class="s2">#CONSTRUCTOR</span><span class="s1"> 
+<a name="l18"><span class="ln">18   </span></a>    </span><span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">name): 
+<a name="l19"><span class="ln">19   </span></a>        self.schoolName = </span><span class="s3">&quot;Tree Road School&quot;</span><span class="s1"> 
+<a name="l20"><span class="ln">20   </span></a>        self.loadAllStudents() 
+<a name="l21"><span class="ln">21   </span></a> 
+<a name="l22"><span class="ln">22   </span></a></span><span class="s2">#METHODS</span><span class="s1"> 
+<a name="l23"><span class="ln">23   </span></a>    </span><span class="s0">def </span><span class="s1">loginCode(self</span><span class="s0">, </span><span class="s1">userInput</span><span class="s0">, </span><span class="s1">userPW): 
+<a name="l24"><span class="ln">24   </span></a>        username = </span><span class="s3">&quot;Mr Leeman&quot;</span><span class="s1"> 
+<a name="l25"><span class="ln">25   </span></a>        password = </span><span class="s3">&quot;123456&quot;</span><span class="s1"> 
+<a name="l26"><span class="ln">26   </span></a>        </span><span class="s0">if </span><span class="s1">userInput == username: 
+<a name="l27"><span class="ln">27   </span></a>            </span><span class="s0">if </span><span class="s1">userPW == password: 
+<a name="l28"><span class="ln">28   </span></a>                print(</span><span class="s3">&quot;Welcome!  Please proceed to use the system.&quot;</span><span class="s1">) 
+<a name="l29"><span class="ln">29   </span></a>                </span><span class="s0">return True</span><span class="s1"> 
+<a name="l30"><span class="ln">30   </span></a>            </span><span class="s0">else</span><span class="s1">: 
+<a name="l31"><span class="ln">31   </span></a>                print(</span><span class="s3">&quot;Password not recognised&quot;</span><span class="s1">) 
+<a name="l32"><span class="ln">32   </span></a>                </span><span class="s0">return False</span><span class="s1"> 
+<a name="l33"><span class="ln">33   </span></a>        </span><span class="s0">else</span><span class="s1">: 
+<a name="l34"><span class="ln">34   </span></a>            print(</span><span class="s3">&quot;That username is not recognised&quot;</span><span class="s1">) 
+<a name="l35"><span class="ln">35   </span></a>            </span><span class="s0">return False</span><span class="s1"> 
+<a name="l36"><span class="ln">36   </span></a> 
+<a name="l37"><span class="ln">37   </span></a> 
+<a name="l38"><span class="ln">38   </span></a>    </span><span class="s0">def </span><span class="s1">logoutFromSystem(self): 
+<a name="l39"><span class="ln">39   </span></a>        print(</span><span class="s3">&quot;You've now been logged out&quot;</span><span class="s1">) 
+<a name="l40"><span class="ln">40   </span></a>        sys.exit 
+<a name="l41"><span class="ln">41   </span></a> 
+<a name="l42"><span class="ln">42   </span></a> 
+<a name="l43"><span class="ln">43   </span></a>    </span><span class="s0">def </span><span class="s1">addStudent(self</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l44"><span class="ln">44   </span></a>        </span><span class="s0">with </span><span class="s1">open(PIK</span><span class="s0">, </span><span class="s3">'ab'</span><span class="s1">) </span><span class="s0">as </span><span class="s1">output: 
+<a name="l45"><span class="ln">45   </span></a>            newStudent = Student(firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail) 
+<a name="l46"><span class="ln">46   </span></a>            pickle.dump(newStudent</span><span class="s0">, </span><span class="s1">output</span><span class="s0">, </span><span class="s1">pickle.HIGHEST_PROTOCOL) 
+<a name="l47"><span class="ln">47   </span></a>        newStudentAsString = (</span><span class="s3">&quot;Student: {0} {1} has been added under unique ID {2}&quot;</span><span class="s1">.format(newStudent.firstName</span><span class="s0">, </span><span class="s1">newStudent.surname</span><span class="s0">, </span><span class="s1">str(newStudent.uniqueId))) 
+<a name="l48"><span class="ln">48   </span></a>        print(newStudentAsString) 
+<a name="l49"><span class="ln">49   </span></a> 
+<a name="l50"><span class="ln">50   </span></a> 
+<a name="l51"><span class="ln">51   </span></a>    </span><span class="s0">def </span><span class="s1">addStudentWithPopUp(self</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l52"><span class="ln">52   </span></a>        </span><span class="s0">with </span><span class="s1">open(PIK</span><span class="s0">, </span><span class="s3">'ab'</span><span class="s1">) </span><span class="s0">as </span><span class="s1">output: 
+<a name="l53"><span class="ln">53   </span></a>            newStudent = Student(firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail) 
+<a name="l54"><span class="ln">54   </span></a>            pickle.dump(newStudent</span><span class="s0">, </span><span class="s1">output</span><span class="s0">, </span><span class="s1">pickle.HIGHEST_PROTOCOL) 
+<a name="l55"><span class="ln">55   </span></a>        newStudentAsString = (</span><span class="s3">&quot;Student: {0} {1} has been added under unique ID {2}&quot;</span><span class="s1">.format(newStudent.firstName</span><span class="s0">, </span><span class="s1">newStudent.surname</span><span class="s0">, </span><span class="s1">str(newStudent.uniqueId))) 
+<a name="l56"><span class="ln">56   </span></a>        print(newStudentAsString) 
+<a name="l57"><span class="ln">57   </span></a>        messagebox.showinfo(</span><span class="s3">&quot;Student Added!&quot;</span><span class="s0">, </span><span class="s1">newStudentAsString) 
+<a name="l58"><span class="ln">58   </span></a> 
+<a name="l59"><span class="ln">59   </span></a> 
+<a name="l60"><span class="ln">60   </span></a>    </span><span class="s0">def </span><span class="s1">addEmptyStudent(self</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l61"><span class="ln">61   </span></a>        </span><span class="s0">with </span><span class="s1">open(PIK</span><span class="s0">, </span><span class="s3">'ab'</span><span class="s1">) </span><span class="s0">as </span><span class="s1">output: 
+<a name="l62"><span class="ln">62   </span></a>            newStudent = Student.newStudent(tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail) 
+<a name="l63"><span class="ln">63   </span></a>            pickle.dump(newStudent</span><span class="s0">, </span><span class="s1">output</span><span class="s0">, </span><span class="s1">pickle.HIGHEST_PROTOCOL) 
+<a name="l64"><span class="ln">64   </span></a>        print(</span><span class="s3">&quot;OK &quot; </span><span class="s1">+ str(newStudent.uniqueId) + </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">) 
+<a name="l65"><span class="ln">65   </span></a> 
+<a name="l66"><span class="ln">66   </span></a> 
+<a name="l67"><span class="ln">67   </span></a>    </span><span class="s0">def </span><span class="s1">loadAllStudents(self): 
+<a name="l68"><span class="ln">68   </span></a>        </span><span class="s0">with </span><span class="s1">open(PIK</span><span class="s0">,</span><span class="s3">'rb'</span><span class="s1">) </span><span class="s0">as </span><span class="s1">input: 
+<a name="l69"><span class="ln">69   </span></a>            </span><span class="s0">while </span><span class="s4">1</span><span class="s1">: 
+<a name="l70"><span class="ln">70   </span></a>                </span><span class="s0">try</span><span class="s1">: 
+<a name="l71"><span class="ln">71   </span></a>                    studentExisiting = pickle.load(input) 
+<a name="l72"><span class="ln">72   </span></a>                </span><span class="s0">except </span><span class="s1">EOFError: 
+<a name="l73"><span class="ln">73   </span></a>                    </span><span class="s0">break</span><span class="s1"> 
+<a name="l74"><span class="ln">74   </span></a>                students.append(studentExisiting) 
+<a name="l75"><span class="ln">75   </span></a>        </span><span class="s2">#DEPRECIATED METHOD:  RETAIN IN CASE OF ERRORS!</span><span class="s1"> 
+<a name="l76"><span class="ln">76   </span></a>        </span><span class="s2"># totalCount = Student.counterId</span><span class="s1"> 
+<a name="l77"><span class="ln">77   </span></a>        </span><span class="s2"># x = 1</span><span class="s1"> 
+<a name="l78"><span class="ln">78   </span></a>        </span><span class="s2"># with open(PIK, 'rb') as input:</span><span class="s1"> 
+<a name="l79"><span class="ln">79   </span></a>        </span><span class="s2">#     for x in range (x, totalCount):</span><span class="s1"> 
+<a name="l80"><span class="ln">80   </span></a>        </span><span class="s2">#         studentExisting = pickle.load(input)</span><span class="s1"> 
+<a name="l81"><span class="ln">81   </span></a>        </span><span class="s2">#         students.append(studentExisting)</span><span class="s1"> 
+<a name="l82"><span class="ln">82   </span></a>        </span><span class="s2">#         x += 1</span><span class="s1"> 
+<a name="l83"><span class="ln">83   </span></a>        </span><span class="s2">#         print('Student added: ' + str(len(students)))</span><span class="s1"> 
+<a name="l84"><span class="ln">84   </span></a> 
+<a name="l85"><span class="ln">85   </span></a> 
+<a name="l86"><span class="ln">86   </span></a>    </span><span class="s0">def </span><span class="s1">viewAllStudents(self): 
+<a name="l87"><span class="ln">87   </span></a>        print(</span><span class="s3">'ViewAllStudents array length: ' </span><span class="s1">+ str(len(students))) 
+<a name="l88"><span class="ln">88   </span></a>        allStudents = </span><span class="s3">''</span><span class="s1"> 
+<a name="l89"><span class="ln">89   </span></a>        </span><span class="s0">for </span><span class="s1">item </span><span class="s0">in </span><span class="s1">students: 
+<a name="l90"><span class="ln">90   </span></a>            print(</span><span class="s3">&quot;Unique Id: &quot; </span><span class="s1">+ str(item.uniqueId) + </span><span class="s3">&quot;, Name: &quot; </span><span class="s1">+ item.firstName) 
+<a name="l91"><span class="ln">91   </span></a>            allStudents += </span><span class="s3">&quot;Unique Id: &quot; </span><span class="s1">+ str(item.uniqueId) + </span><span class="s3">&quot;, Name: &quot; </span><span class="s1">+ item.firstName + </span><span class="s3">' ' </span><span class="s1">+ item.surname + </span><span class="s3">', Address: ' </span><span class="s1">+ item.address + </span><span class="s3">', Tel: ' </span><span class="s1">+ item.telNumber + </span><span class="s3">', DOB: ' </span><span class="s1">+ item.DOB + </span><span class="s3">', Gender: ' </span><span class="s1">+ item.gender + </span><span class="s3">', Tutor Group: ' </span><span class="s1">+ item.tutorGroup + </span><span class="s3">', Email: ' </span><span class="s1">+ item.uniqueEmail + </span><span class="s3">'</span><span class="s0">\n\n</span><span class="s3">'</span><span class="s1"> 
+<a name="l92"><span class="ln">92   </span></a>        </span><span class="s0">return </span><span class="s1">allStudents 
+<a name="l93"><span class="ln">93   </span></a> 
+<a name="l94"><span class="ln">94   </span></a> 
+<a name="l95"><span class="ln">95   </span></a>    </span><span class="s0">def </span><span class="s1">findAStudent(self</span><span class="s0">, </span><span class="s1">idNumber): 
+<a name="l96"><span class="ln">96   </span></a>        </span><span class="s2"># x = 1</span><span class="s1"> 
+<a name="l97"><span class="ln">97   </span></a>        </span><span class="s2">#Open the .dat file and append all student objects to students array</span><span class="s1"> 
+<a name="l98"><span class="ln">98   </span></a>        </span><span class="s2"># with open(PIK, 'rb') as input:</span><span class="s1"> 
+<a name="l99"><span class="ln">99   </span></a>        </span><span class="s2">#     for x in range (x, totalCount):</span><span class="s1"> 
+<a name="l100"><span class="ln">100  </span></a>        </span><span class="s2">#         studentExisting = pickle.load(input)</span><span class="s1"> 
+<a name="l101"><span class="ln">101  </span></a>        </span><span class="s2">#         students.append(studentExisting)</span><span class="s1"> 
+<a name="l102"><span class="ln">102  </span></a>        </span><span class="s2">#         x += 1</span><span class="s1"> 
+<a name="l103"><span class="ln">103  </span></a>        </span><span class="s2">#Iterate through the students array to find</span><span class="s1"> 
+<a name="l104"><span class="ln">104  </span></a>        studentInfo = </span><span class="s3">''</span><span class="s1"> 
+<a name="l105"><span class="ln">105  </span></a>        </span><span class="s0">for </span><span class="s1">item </span><span class="s0">in </span><span class="s1">students: 
+<a name="l106"><span class="ln">106  </span></a>            </span><span class="s0">if </span><span class="s1">item.uniqueId == idNumber: 
+<a name="l107"><span class="ln">107  </span></a>                studentInfo = (</span><span class="s3">'The following information has been found for ' </span><span class="s1">+ str(item.uniqueId) + </span><span class="s3">':</span><span class="s0">\n\n</span><span class="s3">Name: ' </span><span class="s1">+ item.firstName + </span><span class="s3">' ' </span><span class="s1">+ item.surname + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">Address: ' </span><span class="s1">+ item.address + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">Tel: ' </span><span class="s1">+ item.telNumber + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">DOB: ' </span><span class="s1">+ item.DOB + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">Gender: ' </span><span class="s1">+ item.gender + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">Tutor Group: ' </span><span class="s1">+ item.tutorGroup + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">Email: ' </span><span class="s1">+ item.uniqueEmail + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">'</span><span class="s1">) 
+<a name="l108"><span class="ln">108  </span></a>                </span><span class="s2"># print(&quot;Student counter is &quot; + str(Student.counterId))</span><span class="s1"> 
+<a name="l109"><span class="ln">109  </span></a>                </span><span class="s2"># print('Array size: ' + str(len(students)))</span><span class="s1"> 
+<a name="l110"><span class="ln">110  </span></a>                </span><span class="s0">return </span><span class="s1">studentInfo 
+<a name="l111"><span class="ln">111  </span></a>                </span><span class="s0">break</span><span class="s1"> 
+<a name="l112"><span class="ln">112  </span></a> 
+<a name="l113"><span class="ln">113  </span></a> 
+<a name="l114"><span class="ln">114  </span></a>    </span><span class="s0">def </span><span class="s1">clearStudentsArray(self): 
+<a name="l115"><span class="ln">115  </span></a>        students.clear() 
+<a name="l116"><span class="ln">116  </span></a>        print(</span><span class="s3">'Array cleared.'</span><span class="s1">) 
+<a name="l117"><span class="ln">117  </span></a> 
+<a name="l118"><span class="ln">118  </span></a> 
+<a name="l119"><span class="ln">119  </span></a>    </span><span class="s0">def </span><span class="s1">updateStudent(self</span><span class="s0">, </span><span class="s1">idNumber</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l120"><span class="ln">120  </span></a>        x = </span><span class="s4">1</span><span class="s1"> 
+<a name="l121"><span class="ln">121  </span></a>        print(</span><span class="s3">'Array length at updateStudent method call = ' </span><span class="s1">+ str(len(students))) 
+<a name="l122"><span class="ln">122  </span></a>        replaceStudent = Student(</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s1">) 
+<a name="l123"><span class="ln">123  </span></a>        replaceStudent.replacementStudentInfo(idNumber</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail) 
+<a name="l124"><span class="ln">124  </span></a>        </span><span class="s2">#Iterate through the students array to find student object by IdNumber</span><span class="s1"> 
+<a name="l125"><span class="ln">125  </span></a>        </span><span class="s0">for </span><span class="s1">n</span><span class="s0">, </span><span class="s1">i </span><span class="s0">in </span><span class="s1">enumerate(students): 
+<a name="l126"><span class="ln">126  </span></a>            </span><span class="s0">if </span><span class="s1">i.uniqueId == idNumber: 
+<a name="l127"><span class="ln">127  </span></a>                students[n] = replaceStudent 
+<a name="l128"><span class="ln">128  </span></a>                print(replaceStudent.firstName + </span><span class="s3">' ' </span><span class="s1">+ replaceStudent.surname) 
+<a name="l129"><span class="ln">129  </span></a>        print (str(students) + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">'</span><span class="s1">) 
+<a name="l130"><span class="ln">130  </span></a>        </span><span class="s2">#Write new array to pickle.dat file</span><span class="s1"> 
+<a name="l131"><span class="ln">131  </span></a>        </span><span class="s0">with </span><span class="s1">open(PIK</span><span class="s0">, </span><span class="s3">'wb'</span><span class="s1">) </span><span class="s0">as </span><span class="s1">output: 
+<a name="l132"><span class="ln">132  </span></a>            </span><span class="s0">for </span><span class="s1">item </span><span class="s0">in </span><span class="s1">students: 
+<a name="l133"><span class="ln">133  </span></a>                studentId = item.uniqueId 
+<a name="l134"><span class="ln">134  </span></a>                firstName = item.firstName 
+<a name="l135"><span class="ln">135  </span></a>                surname = item.surname 
+<a name="l136"><span class="ln">136  </span></a>                address = item.address 
+<a name="l137"><span class="ln">137  </span></a>                telNo = item.telNumber 
+<a name="l138"><span class="ln">138  </span></a>                DOB = item.DOB 
+<a name="l139"><span class="ln">139  </span></a>                gender = item.gender 
+<a name="l140"><span class="ln">140  </span></a>                tutorGrp = item.tutorGroup 
+<a name="l141"><span class="ln">141  </span></a>                emailAddr = item.uniqueEmail 
+<a name="l142"><span class="ln">142  </span></a>                newStudent = Student(</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s1">) 
+<a name="l143"><span class="ln">143  </span></a>                newStudent.replacementStudentInfo(studentId</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNo</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGrp</span><span class="s0">, </span><span class="s1">emailAddr) 
+<a name="l144"><span class="ln">144  </span></a>                pickle.dump(newStudent</span><span class="s0">, </span><span class="s1">output</span><span class="s0">, </span><span class="s1">pickle.HIGHEST_PROTOCOL) 
+<a name="l145"><span class="ln">145  </span></a> 
+<a name="l146"><span class="ln">146  </span></a> 
+<a name="l147"><span class="ln">147  </span></a>    </span><span class="s0">def </span><span class="s1">updateStudentWithPopUp(self</span><span class="s0">, </span><span class="s1">idNumber</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail): 
+<a name="l148"><span class="ln">148  </span></a>        x = </span><span class="s4">1</span><span class="s1"> 
+<a name="l149"><span class="ln">149  </span></a>        </span><span class="s2"># print('Array length at updateStudent method call = ' + str(len(students)))</span><span class="s1"> 
+<a name="l150"><span class="ln">150  </span></a>        replaceStudent = Student(</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s1">) 
+<a name="l151"><span class="ln">151  </span></a>        replaceStudent.replacementStudentInfo(idNumber</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNumber</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGroup</span><span class="s0">, </span><span class="s1">uniqueEmail) 
+<a name="l152"><span class="ln">152  </span></a>        </span><span class="s2">#Iterate through the students array to find student object by IdNumber</span><span class="s1"> 
+<a name="l153"><span class="ln">153  </span></a>        </span><span class="s0">for </span><span class="s1">n</span><span class="s0">, </span><span class="s1">i </span><span class="s0">in </span><span class="s1">enumerate(students): 
+<a name="l154"><span class="ln">154  </span></a>            </span><span class="s0">if </span><span class="s1">i.uniqueId == idNumber: 
+<a name="l155"><span class="ln">155  </span></a>                students[n] = replaceStudent 
+<a name="l156"><span class="ln">156  </span></a>                print(replaceStudent.firstName + </span><span class="s3">' ' </span><span class="s1">+ replaceStudent.surname) 
+<a name="l157"><span class="ln">157  </span></a>                messagebox.showinfo(</span><span class="s3">&quot;Success!&quot;</span><span class="s0">, </span><span class="s3">'Student record ' </span><span class="s1">+ replaceStudent.uniqueId + </span><span class="s3">' has been updated.</span><span class="s0">\n</span><span class="s3">Please note the amended reference number.'</span><span class="s1">) 
+<a name="l158"><span class="ln">158  </span></a>                </span><span class="s0">with </span><span class="s1">open(PIK</span><span class="s0">, </span><span class="s3">'wb'</span><span class="s1">) </span><span class="s0">as </span><span class="s1">output: 
+<a name="l159"><span class="ln">159  </span></a>                    </span><span class="s0">for </span><span class="s1">item </span><span class="s0">in </span><span class="s1">students: 
+<a name="l160"><span class="ln">160  </span></a>                        studentId = item.uniqueId 
+<a name="l161"><span class="ln">161  </span></a>                        firstName = item.firstName 
+<a name="l162"><span class="ln">162  </span></a>                        surname = item.surname 
+<a name="l163"><span class="ln">163  </span></a>                        address = item.address 
+<a name="l164"><span class="ln">164  </span></a>                        telNo = item.telNumber 
+<a name="l165"><span class="ln">165  </span></a>                        DOB = item.DOB 
+<a name="l166"><span class="ln">166  </span></a>                        gender = item.gender 
+<a name="l167"><span class="ln">167  </span></a>                        tutorGrp = item.tutorGroup 
+<a name="l168"><span class="ln">168  </span></a>                        emailAddr = item.uniqueEmail 
+<a name="l169"><span class="ln">169  </span></a>                        newStudent = Student(</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s0">,</span><span class="s3">'X'</span><span class="s1">) 
+<a name="l170"><span class="ln">170  </span></a>                        newStudent.replacementStudentInfo(studentId</span><span class="s0">, </span><span class="s1">firstName</span><span class="s0">, </span><span class="s1">surname</span><span class="s0">, </span><span class="s1">address</span><span class="s0">, </span><span class="s1">telNo</span><span class="s0">, </span><span class="s1">DOB</span><span class="s0">, </span><span class="s1">gender</span><span class="s0">, </span><span class="s1">tutorGrp</span><span class="s0">, </span><span class="s1">emailAddr) 
+<a name="l171"><span class="ln">171  </span></a>                        pickle.dump(newStudent</span><span class="s0">, </span><span class="s1">output</span><span class="s0">, </span><span class="s1">pickle.HIGHEST_PROTOCOL) 
+<a name="l172"><span class="ln">172  </span></a>                </span><span class="s0">return True</span><span class="s1"> 
+<a name="l173"><span class="ln">173  </span></a>        print (</span><span class="s3">'Student array length at updateStudentWithPopUp method = ' </span><span class="s1">+ str(students) + </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">'</span><span class="s1">) 
+<a name="l174"><span class="ln">174  </span></a>        </span><span class="s2">#Write new array with revised replacement student object to pickle.dat file</span><span class="s1"> 
+<a name="l175"><span class="ln">175  </span></a>        </span><span class="s2"># with open(PIK, 'wb') as output:</span><span class="s1"> 
+<a name="l176"><span class="ln">176  </span></a>        </span><span class="s2">#     for item in students:</span><span class="s1"> 
+<a name="l177"><span class="ln">177  </span></a>        </span><span class="s2">#         studentId = item.uniqueId</span><span class="s1"> 
+<a name="l178"><span class="ln">178  </span></a>        </span><span class="s2">#         firstName = item.firstName</span><span class="s1"> 
+<a name="l179"><span class="ln">179  </span></a>        </span><span class="s2">#         surname = item.surname</span><span class="s1"> 
+<a name="l180"><span class="ln">180  </span></a>        </span><span class="s2">#         address = item.address</span><span class="s1"> 
+<a name="l181"><span class="ln">181  </span></a>        </span><span class="s2">#         telNo = item.telNumber</span><span class="s1"> 
+<a name="l182"><span class="ln">182  </span></a>        </span><span class="s2">#         DOB = item.DOB</span><span class="s1"> 
+<a name="l183"><span class="ln">183  </span></a>        </span><span class="s2">#         gender = item.gender</span><span class="s1"> 
+<a name="l184"><span class="ln">184  </span></a>        </span><span class="s2">#         tutorGrp = item.tutorGroup</span><span class="s1"> 
+<a name="l185"><span class="ln">185  </span></a>        </span><span class="s2">#         emailAddr = item.uniqueEmail</span><span class="s1"> 
+<a name="l186"><span class="ln">186  </span></a>        </span><span class="s2">#         newStudent = Student('X','X','X','X','X','X','X','X')</span><span class="s1"> 
+<a name="l187"><span class="ln">187  </span></a>        </span><span class="s2">#         newStudent.replacementStudentInfo(studentId, firstName, surname, address, telNo, DOB, gender, tutorGrp, emailAddr)</span><span class="s1"> 
+<a name="l188"><span class="ln">188  </span></a>        </span><span class="s2">#         pickle.dump(newStudent, output, pickle.HIGHEST_PROTOCOL)</span><span class="s1"> 
+<a name="l189"><span class="ln">189  </span></a> 
+<a name="l190"><span class="ln">190  </span></a> 
+<a name="l191"><span class="ln">191  </span></a>    </span><span class="s2">#Create a report with list of boys or girls only</span><span class="s1"> 
+<a name="l192"><span class="ln">192  </span></a>    </span><span class="s0">def </span><span class="s1">genderListReportFemale(self): 
+<a name="l193"><span class="ln">193  </span></a>        </span><span class="s2"># print('Students array length: ' + str(len(students)))</span><span class="s1"> 
+<a name="l194"><span class="ln">194  </span></a>        allStudents = </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">&lt;br/&gt;&lt;br/&gt;List of female students:  &lt;br/&gt;'</span><span class="s1"> 
+<a name="l195"><span class="ln">195  </span></a>        </span><span class="s0">for </span><span class="s1">item </span><span class="s0">in </span><span class="s1">students: 
+<a name="l196"><span class="ln">196  </span></a>            </span><span class="s0">if </span><span class="s1">item.gender == </span><span class="s3">'Female'</span><span class="s1">: 
+<a name="l197"><span class="ln">197  </span></a>                </span><span class="s2">#print(&quot;Unique Id: &quot; + str(item.uniqueId) + &quot;, Name: &quot; + item.firstName + ' ' + item.surname)</span><span class="s1"> 
+<a name="l198"><span class="ln">198  </span></a>                allStudents += </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&lt;br/&gt;Unique Id: &quot; </span><span class="s1">+ str(item.uniqueId) + </span><span class="s3">&quot;, Name: &quot; </span><span class="s1">+ item.firstName + </span><span class="s3">' ' </span><span class="s1">+ item.surname + </span><span class="s3">', Address: ' </span><span class="s1">+ item.address + </span><span class="s3">', Tel: ' </span><span class="s1">+ item.telNumber + </span><span class="s3">', DOB: ' </span><span class="s1">+ item.DOB + </span><span class="s3">', Gender: ' </span><span class="s1">+ item.gender + </span><span class="s3">', Tutor Group: ' </span><span class="s1">+ item.tutorGroup + </span><span class="s3">', Email: ' </span><span class="s1">+ item.uniqueEmail + </span><span class="s3">'&lt;br/&gt;</span><span class="s0">\n</span><span class="s3">'</span><span class="s1"> 
+<a name="l199"><span class="ln">199  </span></a>        </span><span class="s0">return </span><span class="s1">allStudents 
+<a name="l200"><span class="ln">200  </span></a> 
+<a name="l201"><span class="ln">201  </span></a> 
+<a name="l202"><span class="ln">202  </span></a>    </span><span class="s0">def </span><span class="s1">genderListReportMale(self): 
+<a name="l203"><span class="ln">203  </span></a>        </span><span class="s2"># print('Students array length: ' + str(len(students)))</span><span class="s1"> 
+<a name="l204"><span class="ln">204  </span></a>        allStudents = </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">&lt;br/&gt;&lt;br/&gt;List of male students:  &lt;br/&gt;'</span><span class="s1"> 
+<a name="l205"><span class="ln">205  </span></a>        </span><span class="s0">for </span><span class="s1">item </span><span class="s0">in </span><span class="s1">students: 
+<a name="l206"><span class="ln">206  </span></a>            </span><span class="s0">if </span><span class="s1">item.gender == </span><span class="s3">'Male'</span><span class="s1">: 
+<a name="l207"><span class="ln">207  </span></a>                </span><span class="s2">#print(&quot;Unique Id: &quot; + str(item.uniqueId) + &quot;, Name: &quot; + item.firstName + ' ' + item.surname)</span><span class="s1"> 
+<a name="l208"><span class="ln">208  </span></a>                allStudents += </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&lt;br/&gt;Unique Id: &quot; </span><span class="s1">+ str(item.uniqueId) + </span><span class="s3">&quot;, Name: &quot; </span><span class="s1">+ item.firstName + </span><span class="s3">' ' </span><span class="s1">+ item.surname + </span><span class="s3">', Address: ' </span><span class="s1">+ item.address + </span><span class="s3">', Tel: ' </span><span class="s1">+ item.telNumber + </span><span class="s3">', DOB: ' </span><span class="s1">+ item.DOB + </span><span class="s3">', Gender: ' </span><span class="s1">+ item.gender + </span><span class="s3">', Tutor Group: ' </span><span class="s1">+ item.tutorGroup + </span><span class="s3">', Email: ' </span><span class="s1">+ item.uniqueEmail + </span><span class="s3">'&lt;br/&gt;</span><span class="s0">\n</span><span class="s3">'</span><span class="s1"> 
+<a name="l209"><span class="ln">209  </span></a>        </span><span class="s0">return </span><span class="s1">allStudents 
+<a name="l210"><span class="ln">210  </span></a> 
+<a name="l211"><span class="ln">211  </span></a> 
+<a name="l212"><span class="ln">212  </span></a>    </span><span class="s0">def </span><span class="s1">genderListReport(self): 
+<a name="l213"><span class="ln">213  </span></a>        females = self.genderListReportFemale() 
+<a name="l214"><span class="ln">214  </span></a>        males = self.genderListReportMale() 
+<a name="l215"><span class="ln">215  </span></a>        combined = females + males 
+<a name="l216"><span class="ln">216  </span></a>        </span><span class="s0">return </span><span class="s1">combined 
+<a name="l217"><span class="ln">217  </span></a> 
+<a name="l218"><span class="ln">218  </span></a> 
+<a name="l219"><span class="ln">219  </span></a>    </span><span class="s2">#Create a report where student details need to be entered:</span><span class="s1"> 
+<a name="l220"><span class="ln">220  </span></a>    </span><span class="s0">def </span><span class="s1">emptyStudentReport(self): 
+<a name="l221"><span class="ln">221  </span></a>        allStudents = </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">&lt;br/&gt;&lt;br/&gt;Students without details that need updating:  &lt;br/&gt;'</span><span class="s1"> 
+<a name="l222"><span class="ln">222  </span></a>        </span><span class="s0">for </span><span class="s1">item </span><span class="s0">in </span><span class="s1">students: 
+<a name="l223"><span class="ln">223  </span></a>            </span><span class="s0">if not </span><span class="s1">item.firstName: 
+<a name="l224"><span class="ln">224  </span></a>                allStudents += </span><span class="s3">&quot;&lt;br/&gt;</span><span class="s0">\n</span><span class="s3">Unique Id: &quot; </span><span class="s1">+ str(item.uniqueId) + </span><span class="s3">&quot;, Name: &quot; </span><span class="s1">+ item.firstName + </span><span class="s3">' ' </span><span class="s1">+ item.surname + </span><span class="s3">'&lt;br/&gt;'</span><span class="s1"> 
+<a name="l225"><span class="ln">225  </span></a>        </span><span class="s0">return </span><span class="s1">allStudents 
+<a name="l226"><span class="ln">226  </span></a> 
+<a name="l227"><span class="ln">227  </span></a> 
+<a name="l228"><span class="ln">228  </span></a>    </span><span class="s2">#Create a report displaying all student names and email addresses:</span><span class="s1"> 
+<a name="l229"><span class="ln">229  </span></a>    </span><span class="s0">def </span><span class="s1">emailListReport(self): 
+<a name="l230"><span class="ln">230  </span></a>        allStudents = </span><span class="s3">'</span><span class="s0">\n</span><span class="s3">&lt;br/&gt;&lt;br/&gt;List of student email addresses:  &lt;br/&gt;'</span><span class="s1"> 
+<a name="l231"><span class="ln">231  </span></a>        </span><span class="s0">for </span><span class="s1">item </span><span class="s0">in </span><span class="s1">students: 
+<a name="l232"><span class="ln">232  </span></a>            allStudents += </span><span class="s3">&quot;&lt;br/&gt;</span><span class="s0">\n</span><span class="s3">Name: &quot; </span><span class="s1">+ item.firstName + </span><span class="s3">' ' </span><span class="s1">+ item.surname + </span><span class="s3">', Email: ' </span><span class="s1">+ item.uniqueEmail + </span><span class="s3">'&lt;br/&gt;</span><span class="s0">\n</span><span class="s3">'</span><span class="s1"> 
+<a name="l233"><span class="ln">233  </span></a>        </span><span class="s0">return </span><span class="s1">allStudents 
+<a name="l234"><span class="ln">234  </span></a> 
+<a name="l235"><span class="ln">235  </span></a> 
+<a name="l236"><span class="ln">236  </span></a>    </span><span class="s2">#Add 25 students</span><span class="s1"> 
+<a name="l237"><span class="ln">237  </span></a>    </span><span class="s0">def </span><span class="s1">addStudents(self): 
+<a name="l238"><span class="ln">238  </span></a>        self.addStudent(</span><span class="s3">'Anna'</span><span class="s0">, </span><span class="s3">'Peters'</span><span class="s0">, </span><span class="s3">'1 The Street'</span><span class="s0">, </span><span class="s3">'0982345321'</span><span class="s0">, </span><span class="s3">'12/12/2000'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Hildegard 1'</span><span class="s0">, </span><span class="s3">'1@gmail.com'</span><span class="s1">) 
+<a name="l239"><span class="ln">239  </span></a>        self.addStudent(</span><span class="s3">'Lisa'</span><span class="s0">, </span><span class="s3">'Ash'</span><span class="s0">, </span><span class="s3">'12 The Street'</span><span class="s0">, </span><span class="s3">'0984654321'</span><span class="s0">, </span><span class="s3">'09/09/2001'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Hildegard 2'</span><span class="s0">, </span><span class="s3">'2@gmail.com'</span><span class="s1">) 
+<a name="l240"><span class="ln">240  </span></a>        self.addStudent(</span><span class="s3">'Ama'</span><span class="s0">, </span><span class="s3">'Jones'</span><span class="s0">, </span><span class="s3">'45 The Road'</span><span class="s0">, </span><span class="s3">'0934674321'</span><span class="s0">, </span><span class="s3">'27/06/1998'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Cassidy 3'</span><span class="s0">, </span><span class="s3">'3@gmail.com'</span><span class="s1">) 
+<a name="l241"><span class="ln">241  </span></a>        self.addStudent(</span><span class="s3">'Laura'</span><span class="s0">, </span><span class="s3">'James'</span><span class="s0">, </span><span class="s3">'16 The Avenue'</span><span class="s0">, </span><span class="s3">'0987233321'</span><span class="s0">, </span><span class="s3">'23/02/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Cassidy 4'</span><span class="s0">, </span><span class="s3">'4@gmail.com'</span><span class="s1">) 
+<a name="l242"><span class="ln">242  </span></a>        self.addStudent(</span><span class="s3">'Kelly'</span><span class="s0">, </span><span class="s3">'Kerrs'</span><span class="s0">, </span><span class="s3">'24 The Top'</span><span class="s0">, </span><span class="s3">'0987222221'</span><span class="s0">, </span><span class="s3">'22/02/1997'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Jones 5'</span><span class="s0">, </span><span class="s3">'5@gmail.com'</span><span class="s1">) 
+<a name="l243"><span class="ln">243  </span></a>        self.addStudent(</span><span class="s3">'Ceila'</span><span class="s0">, </span><span class="s3">'Moora'</span><span class="s0">, </span><span class="s3">'70 Market Road'</span><span class="s0">, </span><span class="s3">'0982354321'</span><span class="s0">, </span><span class="s3">'22/01/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Jones 6'</span><span class="s0">, </span><span class="s3">'6@gmail.com'</span><span class="s1">) 
+<a name="l244"><span class="ln">244  </span></a>        self.addStudent(</span><span class="s3">'Kate'</span><span class="s0">, </span><span class="s3">'Terry'</span><span class="s0">, </span><span class="s3">'55 Market Street'</span><span class="s0">, </span><span class="s3">'0983434321'</span><span class="s0">, </span><span class="s3">'26/04/2002'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Hildegard 7'</span><span class="s0">, </span><span class="s3">'7@gmail.com'</span><span class="s1">) 
+<a name="l245"><span class="ln">245  </span></a>        self.addStudent(</span><span class="s3">'Katie'</span><span class="s0">, </span><span class="s3">'Pettie'</span><span class="s0">, </span><span class="s3">'77 Coronation Street'</span><span class="s0">, </span><span class="s3">'0982323221'</span><span class="s0">, </span><span class="s3">'02/06/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Hildegard 8'</span><span class="s0">, </span><span class="s3">'8@gmail.com'</span><span class="s1">) 
+<a name="l246"><span class="ln">246  </span></a>        self.addStudent(</span><span class="s3">'Kerry'</span><span class="s0">, </span><span class="s3">'Matters'</span><span class="s0">, </span><span class="s3">'34 Downing Street'</span><span class="s0">, </span><span class="s3">'0987333331'</span><span class="s0">, </span><span class="s3">'21/05/1998'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Smith 9'</span><span class="s0">, </span><span class="s3">'9@gmail.com'</span><span class="s1">) 
+<a name="l247"><span class="ln">247  </span></a>        self.addStudent(</span><span class="s3">'Lesley'</span><span class="s0">, </span><span class="s3">'West'</span><span class="s0">, </span><span class="s3">'57 Avenue Street'</span><span class="s0">, </span><span class="s3">'0966666621'</span><span class="s0">, </span><span class="s3">'21/04/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Smith 0'</span><span class="s0">, </span><span class="s3">'0@gmail.com'</span><span class="s1">) 
+<a name="l248"><span class="ln">248  </span></a>        self.addStudent(</span><span class="s3">'Matt'</span><span class="s0">, </span><span class="s3">'Peters'</span><span class="s0">, </span><span class="s3">'1 The Street'</span><span class="s0">, </span><span class="s3">'0982345321'</span><span class="s0">, </span><span class="s3">'12/12/2000'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Hildegard 1'</span><span class="s0">, </span><span class="s3">'1@gmail.com'</span><span class="s1">) 
+<a name="l249"><span class="ln">249  </span></a>        self.addStudent(</span><span class="s3">'Pete'</span><span class="s0">, </span><span class="s3">'Ash'</span><span class="s0">, </span><span class="s3">'12 The Street'</span><span class="s0">, </span><span class="s3">'0984654321'</span><span class="s0">, </span><span class="s3">'09/09/2001'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Hildegard 2'</span><span class="s0">, </span><span class="s3">'2@gmail.com'</span><span class="s1">) 
+<a name="l250"><span class="ln">250  </span></a>        self.addStudent(</span><span class="s3">'John'</span><span class="s0">, </span><span class="s3">'Jones'</span><span class="s0">, </span><span class="s3">'45 The Road'</span><span class="s0">, </span><span class="s3">'0934674321'</span><span class="s0">, </span><span class="s3">'27/06/1998'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Cassidy 3'</span><span class="s0">, </span><span class="s3">'3@gmail.com'</span><span class="s1">) 
+<a name="l251"><span class="ln">251  </span></a>        self.addStudent(</span><span class="s3">'Percy'</span><span class="s0">, </span><span class="s3">'James'</span><span class="s0">, </span><span class="s3">'16 The Avenue'</span><span class="s0">, </span><span class="s3">'0987233321'</span><span class="s0">, </span><span class="s3">'23/02/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Cassidy 4'</span><span class="s0">, </span><span class="s3">'4@gmail.com'</span><span class="s1">) 
+<a name="l252"><span class="ln">252  </span></a>        self.addStudent(</span><span class="s3">'Chris'</span><span class="s0">, </span><span class="s3">'Kerrs'</span><span class="s0">, </span><span class="s3">'24 The Top'</span><span class="s0">, </span><span class="s3">'0987222221'</span><span class="s0">, </span><span class="s3">'22/02/1997'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Jones 5'</span><span class="s0">, </span><span class="s3">'5@gmail.com'</span><span class="s1">) 
+<a name="l253"><span class="ln">253  </span></a>        self.addStudent(</span><span class="s3">'Sam'</span><span class="s0">, </span><span class="s3">'Moora'</span><span class="s0">, </span><span class="s3">'70 Market Road'</span><span class="s0">, </span><span class="s3">'0982354321'</span><span class="s0">, </span><span class="s3">'22/01/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Jones 6'</span><span class="s0">, </span><span class="s3">'6@gmail.com'</span><span class="s1">) 
+<a name="l254"><span class="ln">254  </span></a>        self.addStudent(</span><span class="s3">'Ash'</span><span class="s0">, </span><span class="s3">'Terry'</span><span class="s0">, </span><span class="s3">'55 Market Street'</span><span class="s0">, </span><span class="s3">'0983434321'</span><span class="s0">, </span><span class="s3">'26/04/2002'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Hildegard 7'</span><span class="s0">, </span><span class="s3">'7@gmail.com'</span><span class="s1">) 
+<a name="l255"><span class="ln">255  </span></a>        self.addStudent(</span><span class="s3">'Paul'</span><span class="s0">, </span><span class="s3">'Pettie'</span><span class="s0">, </span><span class="s3">'77 Coronation Street'</span><span class="s0">, </span><span class="s3">'0982323221'</span><span class="s0">, </span><span class="s3">'02/06/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Hildegard 8'</span><span class="s0">, </span><span class="s3">'8@gmail.com'</span><span class="s1">) 
+<a name="l256"><span class="ln">256  </span></a>        self.addStudent(</span><span class="s3">'Mark'</span><span class="s0">, </span><span class="s3">'Matters'</span><span class="s0">, </span><span class="s3">'34 Downing Street'</span><span class="s0">, </span><span class="s3">'0987333331'</span><span class="s0">, </span><span class="s3">'21/05/1998'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Smith 9'</span><span class="s0">, </span><span class="s3">'9@gmail.com'</span><span class="s1">) 
+<a name="l257"><span class="ln">257  </span></a>        self.addStudent(</span><span class="s3">'Luke'</span><span class="s0">, </span><span class="s3">'West'</span><span class="s0">, </span><span class="s3">'57 Avenue Street'</span><span class="s0">, </span><span class="s3">'0966666621'</span><span class="s0">, </span><span class="s3">'21/04/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Smith 0'</span><span class="s0">, </span><span class="s3">'0@gmail.com'</span><span class="s1">) 
+<a name="l258"><span class="ln">258  </span></a>        self.addStudent(</span><span class="s3">'John'</span><span class="s0">, </span><span class="s3">'Johnson'</span><span class="s0">, </span><span class="s3">'New York'</span><span class="s0">, </span><span class="s3">'935'</span><span class="s0">, </span><span class="s3">'16/04/1998'</span><span class="s0">, </span><span class="s3">'Male'</span><span class="s0">, </span><span class="s3">'Marx 1'</span><span class="s0">, </span><span class="s3">'me@me.com'</span><span class="s1">) 
+<a name="l259"><span class="ln">259  </span></a>        self.addStudent(</span><span class="s3">'Kenny'</span><span class="s0">, </span><span class="s3">'Dope'</span><span class="s0">, </span><span class="s3">'Boston'</span><span class="s0">, </span><span class="s3">'934'</span><span class="s0">, </span><span class="s3">'03/11/1976'</span><span class="s0">, </span><span class="s3">'Male'</span><span class="s0">, </span><span class="s3">'Marx 1'</span><span class="s0">, </span><span class="s3">'me@me.com'</span><span class="s1">) 
+<a name="l260"><span class="ln">260  </span></a>        self.addStudent(</span><span class="s3">'Todd'</span><span class="s0">, </span><span class="s3">'Edwards'</span><span class="s0">, </span><span class="s3">'Paris'</span><span class="s0">, </span><span class="s3">'349'</span><span class="s0">, </span><span class="s3">'05/01/1981'</span><span class="s0">, </span><span class="s3">'Male'</span><span class="s0">, </span><span class="s3">'Lush 1'</span><span class="s0">, </span><span class="s3">'me@me.com'</span><span class="s1">) 
+<a name="l261"><span class="ln">261  </span></a>        self.addStudent(</span><span class="s3">'Gilly'</span><span class="s0">, </span><span class="s3">'Cooper'</span><span class="s0">, </span><span class="s3">'Canterbury'</span><span class="s0">, </span><span class="s3">'456'</span><span class="s0">, </span><span class="s3">'01/09/1986'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Kenny 1'</span><span class="s0">, </span><span class="s3">'me@me.com'</span><span class="s1">) 
+<a name="l262"><span class="ln">262  </span></a>        self.addStudent(</span><span class="s3">'Alexandra'</span><span class="s0">, </span><span class="s3">'Kessie'</span><span class="s0">, </span><span class="s3">'London'</span><span class="s0">, </span><span class="s3">'123'</span><span class="s0">, </span><span class="s3">'19/07/1999'</span><span class="s0">, </span><span class="s3">'Female'</span><span class="s0">, </span><span class="s3">'Luke 1'</span><span class="s0">, </span><span class="s3">'me@me.com'</span><span class="s1">) 
+<a name="l263"><span class="ln">263  </span></a> 
+<a name="l264"><span class="ln">264  </span></a>    </span><span class="s2">#Add 5 empty students</span><span class="s1"> 
+<a name="l265"><span class="ln">265  </span></a>    </span><span class="s0">def </span><span class="s1">addEmptyStudents(self): 
+<a name="l266"><span class="ln">266  </span></a>        self.addEmptyStudent(</span><span class="s3">'Cassidy'</span><span class="s0">,</span><span class="s3">'1@1.com'</span><span class="s1">) 
+<a name="l267"><span class="ln">267  </span></a>        self.addEmptyStudent(</span><span class="s3">'Cassidy'</span><span class="s0">,</span><span class="s3">'2@1.com'</span><span class="s1">) 
+<a name="l268"><span class="ln">268  </span></a>        self.addEmptyStudent(</span><span class="s3">'Cassidy'</span><span class="s0">,</span><span class="s3">'3@1.com'</span><span class="s1">) 
+<a name="l269"><span class="ln">269  </span></a>        self.addEmptyStudent(</span><span class="s3">'Cassidy'</span><span class="s0">,</span><span class="s3">'4@1.com'</span><span class="s1">) 
+<a name="l270"><span class="ln">270  </span></a>        self.addEmptyStudent(</span><span class="s3">'Cassidy'</span><span class="s0">,</span><span class="s3">'5@1.com'</span><span class="s1">) 
+<a name="l271"><span class="ln">271  </span></a> 
+<a name="l272"><span class="ln">272  </span></a> 
+<a name="l273"><span class="ln">273  </span></a> 
+<a name="l274"><span class="ln">274  </span></a> 
+<a name="l275"><span class="ln">275  </span></a></span></pre>
+</body>
+</html>
